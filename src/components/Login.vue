@@ -2,7 +2,8 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>{{ middleMessage }}</h2>
-    <button type="button" class="btn btn-primary"> {{buttonMessage}}</button>
+    <a type="button" class="btn btn-primary" href="https://localhost/"> {{buttonMessage}}</a>
+    <button type="button" v-on:click="navigateTo('Register')" class="btn btn-primary"> {{buttontest}}</button>
   </div>
 </template>
 
@@ -13,7 +14,14 @@ export default {
     return {
       msg: 'Welcome to Warpress!',
       middleMessage: 'Please login with your battle.net',
-      buttonMessage: 'Login with Battle.net'
+      buttonMessage: 'Login with Battle.net',
+      buttontest: 'To Register [TESTING]'
+    }
+  },
+  methods: {
+    navigateTo: function (nav) {
+      console.log(nav)
+      this.$router.push(nav)
     }
   }
 }
