@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>{{ middleMessage }}</h2>
-    <a type="button" class="btn btn-primary" href="https://localhost/"> {{buttonMessage}}</a>
+    <a type="button" class="btn btn-primary" href="https://localhost/bnet/auth"> {{buttonMessage}}</a>
     <button type="button" v-on:click="navigateTo('Register')" class="btn btn-primary"> {{buttontest}}</button>
   </div>
 </template>

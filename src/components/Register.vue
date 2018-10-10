@@ -4,7 +4,9 @@
     <p>You can repick at a later time.</p>
     <div>
       <div class="list-group MainSelecter">
-        <a class="main list-group-item list-group-item-action list-group-item-primary" v-bind:class="{ 'active' : isSelected(char.id) }" v-on:click="selected = char.id" v-for="char in chars" :key="char.id" >{{char.Name}} - {{char.Realm}}</a>
+        <a class="main list-group-item list-group-item-action list-group-item-primary" v-bind:class="{ 'active' : isSelected(char.id) }" v-on:click="selected = char.id" v-for="char in chars" :key="char.id" >
+            {{char.name}} - {{char.realm}}
+        </a>
       </div>
     </div>
 
@@ -14,6 +16,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Register',
 
@@ -39,6 +43,14 @@ export default {
         return 'rigtige data fra bodien'
       }
     }
+  },
+  mounted () {
+    axios.get(process.env.API_URL + 'chars', { withCredentials: true })
+      .then(response => {
+        console.log(response.data)
+        this.chars = response.data
+      })
+      .catch(error => console.log(error))
   },
   methods: {
     RegisterMain: function () {
