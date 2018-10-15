@@ -1,6 +1,6 @@
-# warpress
+# WOWHub.io
 
-> warpress
+> WOWHub.io
 
 ## Build Setup
 
