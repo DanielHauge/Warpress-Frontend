@@ -28,15 +28,15 @@ export default {
       chars: [ // Bør være det rigtige data -> via request bodien. -> Kan også lave et ajax kald, og bruge en prop fra url istedet.
         {
           id: 0,
-          Name: 'Rakhoal',
-          Realm: 'Twisting-Nether',
-          Locale: 'en_GB'
+          name: 'Rakhoal',
+          realm: 'Twisting-Nether',
+          locale: 'en_GB'
         },
         {
           id: 1,
-          Name: 'TestChar',
-          Realm: 'Twisting-Nether',
-          Locale: 'en_GB'
+          name: 'TestChar',
+          realm: 'Twisting-Nether',
+          locale: 'en_GB'
         }
       ],
       charsData: function () {
