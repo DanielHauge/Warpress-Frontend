@@ -4,7 +4,7 @@
     <p>You can repick at a later time.</p>
     <div>
       <div class="list-group MainSelecter">
-        <a class="main list-group-item list-group-item-action list-group-item-primary" v-bind:class="{ 'active' : isSelected(char.id) }" v-on:click="selected = char.id" v-for="char in chars" :key="char.id" >
+        <a class="main list-group-item list-group-item-action list-group-item-primary" v-bind:class="{ 'active' : isSelected(index) }" v-on:click="selected = index" v-for="(char, index) in chars" :key="index" >
             {{char.name}} - {{char.realm}}
         </a>
       </div>
@@ -27,13 +27,19 @@ export default {
       selected: 0,
       chars: [ // Bør være det rigtige data -> via request bodien. -> Kan også lave et ajax kald, og bruge en prop fra url istedet.
         {
-          id: 0,
-          name: 'Rakhoal',
-          realm: 'Twisting-Nether',
-          locale: 'en_GB'
+          achievementPoints: 6880,
+          battlegroup: 'Vindication',
+          class: 7,
+          gender: 1,
+          guild: 'Dedodated Waiders',
+          guildRealm: 'The Maelstrom',
+          last_modified: 0,
+          level: 120,
+          name: 'Élduderino',
+          race: 25,
+          realm: 'The Maelstrom'
         },
         {
-          id: 1,
           name: 'TestChar',
           realm: 'Twisting-Nether',
           locale: 'en_GB'
@@ -54,7 +60,7 @@ export default {
   },
   methods: {
     RegisterMain: function () {
-      alert('You picked a main!: ' + this.chars[this.selected].Name)
+      alert('You picked a main!: ' + this.chars[this.selected].name + ' as your main')
       // Bør lave et kald til backenden som vil registere dette. -> gå videre til login.
     },
     isSelected: function (i) {
