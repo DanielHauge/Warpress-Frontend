@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <button type="button" v-on:click="RegisterMain()" class="btn btn-primary"> Confirm </button>
+    <button type="button" v-on:click="registerMain()" class="btn btn-primary"> Confirm </button>
 
   </div>
 </template>
@@ -51,6 +51,7 @@ export default {
     }
   },
   mounted () {
+    //axios.all([getMain(), getChars()])
     axios.get(process.env.API_URL + 'chars', { withCredentials: true })
       .then(response => {
         console.log(response.data)
@@ -59,9 +60,23 @@ export default {
       .catch(error => console.log(error))
   },
   methods: {
-    RegisterMain: function () {
-      alert('You picked a main!: ' + this.chars[this.selected].name + ' as your main')
-      // Bør lave et kald til backenden som vil registere dette. -> gå videre til login.
+    registerMain: function () {
+      let selected = this.chars[this.selected]
+
+      axios.post(process.env.API_URL + 'main', {
+        name: selected.name,
+        realm: selected.realm
+      }, { withCredentials: true })
+        .then(response => {
+          
+        })
+        .catch(error => console.log(error))
+    },
+    getMain: function () {
+        return axios.get(process.env.API_URL + 'main', { withCredentials: true})
+    },
+    getChars: function () {
+        return axios.get(process.env.API_URL + 'chars', { withCredentials: true })
     },
     isSelected: function (i) {
       return i === this.selected
