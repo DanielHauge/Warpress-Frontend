@@ -16,7 +16,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { APIService } from '../services/api'
+const apiService = new APIService()
 
 export default {
   name: 'Register',
@@ -51,8 +52,10 @@ export default {
     }
   },
   mounted () {
+
     //axios.all([getMain(), getChars()])
-    axios.get(process.env.API_URL + 'chars', { withCredentials: true })
+    //axios.get(process.env.API_URL + 'chars', { withCredentials: true })
+    apiService.getChars()
       .then(response => {
         console.log(response.data)
         this.chars = response.data
@@ -63,20 +66,18 @@ export default {
     registerMain: function () {
       let selected = this.chars[this.selected]
 
-      axios.post(process.env.API_URL + 'main', {
-        name: selected.name,
-        realm: selected.realm
-      }, { withCredentials: true })
+      // axios.post(process.env.API_URL + 'main', {
+      //   name: selected.name,
+      //   realm: selected.realm
+      // }, { withCredentials: true })
+      apiService.setMain({
+         name: selected.name,
+         realm: selected.realm
+      })
         .then(response => {
           
         })
         .catch(error => console.log(error))
-    },
-    getMain: function () {
-        return axios.get(process.env.API_URL + 'main', { withCredentials: true})
-    },
-    getChars: function () {
-        return axios.get(process.env.API_URL + 'chars', { withCredentials: true })
     },
     isSelected: function (i) {
       return i === this.selected
