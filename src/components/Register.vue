@@ -4,84 +4,124 @@
     <p>You can repick at a later time.</p>
     <div>
       <div class="list-group MainSelecter">
-        <a class="main list-group-item list-group-item-action list-group-item-primary" v-bind:class="{ 'active' : isSelected(char.id) }" v-on:click="selected = char.id" v-for="char in chars" :key="char.id" >{{char.Name}} - {{char.Realm}}</a>
+        <a class="main list-group-item list-group-item-action list-group-item-primary" v-bind:class="{ 'active' : isSelected(index) }" v-on:click="selected = index" v-for="(char, index) in chars" :key="index" >
+            {{char.name}} - {{char.realm}}
+        </a>
       </div>
     </div>
 
-    <button type="button" v-on:click="RegisterMain()" class="btn btn-primary"> Confirm </button>
+    <button type="button" v-on:click="registerMain()" class="btn btn-primary"> Confirm </button>
 
   </div>
 </template>
 
 <script>
-export default {
-  name: 'Register',
+import { APIService } from "../services/api";
+const apiService = new APIService();
 
-  data () {
+export default {
+  name: "Register",
+
+  data() {
     return {
-      description: 'Hello:',
+      description: "Hello:",
       selected: 0,
-      chars: [ // Bør være det rigtige data -> via request bodien. -> Kan også lave et ajax kald, og bruge en prop fra url istedet.
+      chars: [
+        // Bør være det rigtige data -> via request bodien. -> Kan også lave et ajax kald, og bruge en prop fra url istedet.
         {
-          id: 0,
-          Name: 'Rakhoal',
-          Realm: 'Twisting-Nether',
-          Locale: 'en_GB'
+          achievementPoints: 6880,
+          battlegroup: "Vindication",
+          class: 7,
+          gender: 1,
+          guild: "Dedodated Waiders",
+          guildRealm: "The Maelstrom",
+          last_modified: 0,
+          level: 120,
+          name: "Élduderino",
+          race: 25,
+          realm: "The Maelstrom"
         },
         {
-          id: 1,
-          Name: 'TestChar',
-          Realm: 'Twisting-Nether',
-          Locale: 'en_GB'
+          name: "TestChar",
+          realm: "Twisting-Nether",
+          locale: "en_GB"
         }
       ],
-      charsData: function () {
-        return 'rigtige data fra bodien'
+      charsData: function() {
+        return "rigtige data fra bodien";
       }
-    }
+    };
+  },
+  mounted() {
+    // axios.all([getMain(), getChars()])
+    // axios.get(process.env.API_URL + 'chars', { withCredentials: true })
+    apiService
+      .getChars()
+      .then(response => {
+        console.log(response.data);
+        this.chars = response.data;
+      })
+      .catch(error => console.log(error));
   },
   methods: {
-    RegisterMain: function () {
-      alert('You picked a main!: ' + this.chars[this.selected].Name)
-      // Bør lave et kald til backenden som vil registere dette. -> gå videre til login.
+    registerMain: function() {
+      let selected = this.chars[this.selected];
+
+      // axios.post(process.env.API_URL + 'main', {
+      //   name: selected.name,
+      //   realm: selected.realm
+      // }, { withCredentials: true })
+      apiService
+        .setMain({
+          name: selected.name,
+          realm: selected.realm
+        })
+        .then(response => {
+            window.location.assign('#/Main')
+            //window.location.reload(true)
+        })
+        .catch(error => console.log(error));
     },
-    isSelected: function (i) {
-      return i === this.selected
+    isSelected: function(i) {
+      return i === this.selected;
     }
   }
-}
-
+};
 </script>
 
 <style scoped>
+.MainSelecter {
+  /* width: 20%; */
+  display: inline-block;
+  padding-bottom: 10px;
+}
+main {
+  font-size: xx-large;
+}
 
-  .MainSelecter {
-    width: 20%;
-    display: inline-block;
-    padding-bottom: 10px;
-  }
-  main {
-    font-size: xx-large;
-  }
+listGroup {
+  margin: 50px;
+}
 
-  listGroup {
-    margin: 50px;
-  }
+.list-group-item {
+  background-color: transparent;
+  border-top: 0 solid #ddd;
+  border-radius: 5px;
+  color: #fff;
+}
 
-  .list-group-item {
-    background-color: transparent;
-    border-top: 0 solid #ddd;
-    border-radius: 5px;
-    color: #fff;
-  }
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  background-color: darkorange;
+}
 
-  .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
-    background-color: darkorange;
-  }
+.list-group-item:hover {
+  background-color: darkorange;
+  opacity: 0.6;
+}
 
-  .list-group-item:hover {
-    background-color: darkorange;
-    opacity: 0.6;
-  }
-
+.register {
+    color: #ffd700;
+}
 </style>
