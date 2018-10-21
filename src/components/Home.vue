@@ -4,25 +4,27 @@
 
 <script>
 export default {
-  name: 'Home',
+  name: "Home",
   props: {
     id: {
       type: String,
-      default: 'NO_ID'
+      default: "NO_ID"
     }
   },
-  data () {
+  data() {
     return {
-      msg: 'hej',
+      msg: "hej",
       info: null
-    }
+    };
   },
-  mounted () {
-    this.axios.get('').then(response => (this.info = response)).catch(error => console.log(error))
+  mounted() {
+    this.axios
+      .get("")
+      .then(response => (this.info = response))
+      .catch(error => console.log(error));
   }
-}
+};
 </script>
 
 <style scoped>
-
 </style>

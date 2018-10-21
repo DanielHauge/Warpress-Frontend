@@ -16,106 +16,112 @@
 </template>
 
 <script>
-import { APIService } from '../services/api'
-const apiService = new APIService()
+import { APIService } from "../services/api";
+const apiService = new APIService();
 
 export default {
-  name: 'Register',
+  name: "Register",
 
-  data () {
+  data() {
     return {
-      description: 'Hello:',
+      description: "Hello:",
       selected: 0,
-      chars: [ // Bør være det rigtige data -> via request bodien. -> Kan også lave et ajax kald, og bruge en prop fra url istedet.
+      chars: [
+        // Bør være det rigtige data -> via request bodien. -> Kan også lave et ajax kald, og bruge en prop fra url istedet.
         {
           achievementPoints: 6880,
-          battlegroup: 'Vindication',
+          battlegroup: "Vindication",
           class: 7,
           gender: 1,
-          guild: 'Dedodated Waiders',
-          guildRealm: 'The Maelstrom',
+          guild: "Dedodated Waiders",
+          guildRealm: "The Maelstrom",
           last_modified: 0,
           level: 120,
-          name: 'Élduderino',
+          name: "Élduderino",
           race: 25,
-          realm: 'The Maelstrom'
+          realm: "The Maelstrom"
         },
         {
-          name: 'TestChar',
-          realm: 'Twisting-Nether',
-          locale: 'en_GB'
+          name: "TestChar",
+          realm: "Twisting-Nether",
+          locale: "en_GB"
         }
       ],
-      charsData: function () {
-        return 'rigtige data fra bodien'
+      charsData: function() {
+        return "rigtige data fra bodien";
       }
-    }
+    };
   },
-  mounted () {
-
-    //axios.all([getMain(), getChars()])
-    //axios.get(process.env.API_URL + 'chars', { withCredentials: true })
-    apiService.getChars()
+  mounted() {
+    // axios.all([getMain(), getChars()])
+    // axios.get(process.env.API_URL + 'chars', { withCredentials: true })
+    apiService
+      .getChars()
       .then(response => {
-        console.log(response.data)
-        this.chars = response.data
+        console.log(response.data);
+        this.chars = response.data;
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
   },
   methods: {
-    registerMain: function () {
-      let selected = this.chars[this.selected]
+    registerMain: function() {
+      let selected = this.chars[this.selected];
 
       // axios.post(process.env.API_URL + 'main', {
       //   name: selected.name,
       //   realm: selected.realm
       // }, { withCredentials: true })
-      apiService.setMain({
-         name: selected.name,
-         realm: selected.realm
-      })
-        .then(response => {
-          
+      apiService
+        .setMain({
+          name: selected.name,
+          realm: selected.realm
         })
-        .catch(error => console.log(error))
+        .then(response => {
+            window.location.assign('#/Main')
+            //window.location.reload(true)
+        })
+        .catch(error => console.log(error));
     },
-    isSelected: function (i) {
-      return i === this.selected
+    isSelected: function(i) {
+      return i === this.selected;
     }
   }
-}
-
+};
 </script>
 
 <style scoped>
+.MainSelecter {
+  /* width: 20%; */
+  display: inline-block;
+  padding-bottom: 10px;
+}
+main {
+  font-size: xx-large;
+}
 
-  .MainSelecter {
-    width: 20%;
-    display: inline-block;
-    padding-bottom: 10px;
-  }
-  main {
-    font-size: xx-large;
-  }
+listGroup {
+  margin: 50px;
+}
 
-  listGroup {
-    margin: 50px;
-  }
+.list-group-item {
+  background-color: transparent;
+  border-top: 0 solid #ddd;
+  border-radius: 5px;
+  color: #fff;
+}
 
-  .list-group-item {
-    background-color: transparent;
-    border-top: 0 solid #ddd;
-    border-radius: 5px;
-    color: #fff;
-  }
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  background-color: darkorange;
+}
 
-  .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
-    background-color: darkorange;
-  }
+.list-group-item:hover {
+  background-color: darkorange;
+  opacity: 0.6;
+}
 
-  .list-group-item:hover {
-    background-color: darkorange;
-    opacity: 0.6;
-  }
-
+.register {
+    color: #ffd700;
+}
 </style>
