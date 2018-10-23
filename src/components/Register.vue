@@ -26,62 +26,43 @@ export default {
     return {
       description: "Hello:",
       selected: 0,
-      chars: [
-        // Bør være det rigtige data -> via request bodien. -> Kan også lave et ajax kald, og bruge en prop fra url istedet.
-        {
-          achievementPoints: 6880,
-          battlegroup: "Vindication",
-          class: 7,
-          gender: 1,
-          guild: "Dedodated Waiders",
-          guildRealm: "The Maelstrom",
-          last_modified: 0,
-          level: 120,
-          name: "Élduderino",
-          race: 25,
-          realm: "The Maelstrom"
-        },
-        {
-          name: "TestChar",
-          realm: "Twisting-Nether",
-          locale: "en_GB"
-        }
-      ],
+      chars: [],
       charsData: function() {
         return "rigtige data fra bodien";
       }
     };
   },
-  mounted() {
+  created() {
     // axios.all([getMain(), getChars()])
     // axios.get(process.env.API_URL + 'chars', { withCredentials: true })
-    apiService
-      .getChars()
-      .then(response => {
-        console.log(response.data);
-        this.chars = response.data;
-      })
-      .catch(error => console.log(error));
+    this.getChars()
   },
   methods: {
+    getChars: function() {
+      apiService
+        .getChars()
+        .then(response => {
+          console.log(response.data);
+          this.chars = response.data;
+        })
+        .catch(error => console.log(error));
+    },
+
     registerMain: function() {
       let selected = this.chars[this.selected];
 
-      // axios.post(process.env.API_URL + 'main', {
-      //   name: selected.name,
-      //   realm: selected.realm
-      // }, { withCredentials: true })
       apiService
         .setMain({
           name: selected.name,
           realm: selected.realm
         })
         .then(response => {
-            window.location.assign('#/Main')
-            //window.location.reload(true)
+          this.$router.push("/");
+          //window.location.reload(true)
         })
         .catch(error => console.log(error));
     },
+    
     isSelected: function(i) {
       return i === this.selected;
     }
@@ -122,6 +103,6 @@ listGroup {
 }
 
 .register {
-    color: #ffd700;
+  color: #ffd700;
 }
 </style>

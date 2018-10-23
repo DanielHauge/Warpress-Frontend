@@ -27,5 +27,12 @@ export class APIService {
 		return axios.get(url, {
 			withCredentials: true
 		})
+    }
+    
+    logout() {
+		const url = `https://www.blizzard.com/logout`
+		return axios.get(url, {
+			withCredentials: true
+		})
 	}
 }

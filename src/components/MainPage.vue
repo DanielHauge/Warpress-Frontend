@@ -1,14 +1,23 @@
 <template>
-    <div class="main">        
-        <b-card title="" :sub-title="info.character.guild.name" border-variant="dark" :header="main.name + ' - ' + info.character.realm" class="bg-light">
+    <div class="main">    
+        <b-card overlay
+            v-if="main && info" 
+            :title="main.name + ' - ' + info.character.realm" 
+            :sub-title="info.character.guild.name" 
+            border-variant="dark"
+            text-variant="white"
+            header="" 
+            class="bg-light"
+            :img-src="'https://render-eu.worldofwarcraft.com/character/'+info.character.thumbnail"
+            v-bind:style="{ backgroundImage: 'https://render-eu.worldofwarcraft.com/character/'+info.character.thumbnail}">
             <p class="card-text">
                 Gear:
-                <b-container >
+                <b-container>
                     <b-row>
-                        <b-col v-for="item in info.character.items" v-if="item.icon" :key="item.id">
+                        <b-col v-for="(item, slot, i) in info.character.items" v-if="item.icon" :key="item.id">
                             <!-- <p>{{item.name}}</p>
                             <p>{{item.itemLevel}}</p> -->
-                            <b-img v-b-popover.hover="item.name + '\n Item Level: ' + item.itemLevel" :title="item.name" :src="'https://wow.zamimg.com/images/wow/icons/large/'+item.icon+'.jpg'" alt="Image"></b-img>
+                            <GearIcon :item="item"></GearIcon>
                         </b-col>
                     </b-row>
                 </b-container>
@@ -19,42 +28,66 @@
 </template>
 
 <script>
+import GearIcon from './GearIcon'
 import { APIService } from "../services/api.js";
 const apiService = new APIService();
 
 export default {
   components: {
-    
+      GearIcon
   },
 
   data() {
     return {
       description: "Hello:",
       selected: 0,
-      main: {},
-      info: {}
+      main: null,
+      info: null
     };
   },
-  mounted() {
+  computed: {
+      cssProps() {
+          return {
+              '--bg-image': (this.info.character.thumbnail)
+          }
+      }
+  },
+  created() {
     // axios.all([getMain(), getChars()])
     // axios.get(process.env.API_URL + 'chars', { withCredentials: true })
-    apiService
-      .getMain()
-      .then(response => {
-        this.main = response.data;
-      })
-      .catch(error => console.log(error));
-
-    apiService
-      .getPersonal()
-      .then(response => {
-        this.info = response.data;
-      })
-      .catch(error => console.log(error));
+    this.getDataFromApi()
   },
-  methods: {}
+  methods: {
+    getDataFromApi() {
+      apiService
+        .getMain()
+        .then(response => {
+          this.main = response.data;
+        })
+        .catch(error => {
+          if (error.response.status === 401) {
+            this.$router.push("login");
+          }
+        });
+
+      apiService
+        .getPersonal()
+        .then(response => {
+          this.info = response.data;
+          this.info.character.thumbnail = this.info.character.thumbnail.replace("avatar", "main")
+        })
+        .catch(error => {
+          if (error.response.status === 401) {
+            this.$router.push("login");
+          }
+        });
+    }
+  }
 };
 </script>
 
 <style scoped>
+/* .card-body {
+    background-image: "https://render-eu.worldofwarcraft.com/character/" + var(--bg-image)
+} */
 </style>

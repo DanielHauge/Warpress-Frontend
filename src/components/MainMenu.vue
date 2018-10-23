@@ -8,8 +8,9 @@
   <b-collapse is-nav id="nav_collapse">
 
     <b-navbar-nav>
-      <b-nav-item href="#/Main">Personal</b-nav-item>
-      <b-nav-item href="#/Guild">Guild</b-nav-item>
+      <b-nav-item href="#/">Personal</b-nav-item>
+      <b-nav-item href="#/guild">Guild</b-nav-item>
+      <b-nav-item href="#/register">Register Main</b-nav-item>
     </b-navbar-nav>
 
     <!-- Right aligned nav items -->
@@ -26,7 +27,7 @@
       <b-nav-item-dropdown right text="User">
         <!-- Using button-content slot -->
         
-        <b-dropdown-item href="#">Profile</b-dropdown-item>
+        <b-dropdown-item href="#" :v-on:click="logout">Profile</b-dropdown-item>
         <b-dropdown-item href="#">Signout</b-dropdown-item>
       </b-nav-item-dropdown>
     </b-navbar-nav>
@@ -36,13 +37,20 @@
 </template>
 
 <script>
+import { APIService } from "../services/api.js";
+const apiService = new APIService();
+
 export default {
   name: "App",
   data() {
     return {
       title: "Warpress"
     };
+  },
+  methods: {
+      logout: apiService.logout
   }
+
 };
 </script>
 

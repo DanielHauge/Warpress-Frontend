@@ -4,6 +4,7 @@ import LoginPage from '@/components/LoginPage'
 import MainPage from '@/components/MainPage'
 import Home from '@/components/Home'
 import Register from '@/components/Register'
+import HovPage from '@/components/HovPage'
 
 Vue.use(Router)
 
@@ -11,23 +12,27 @@ export default new Router({
 	routes: [{
 			path: '/',
 			name: 'Index',
-			component: LoginPage
+			component: MainPage
 		},
 		{
-			path: '/Login/:id',
+			path: '/login',
 			name: 'Login',
-			component: Home,
-			props: true
+			component: LoginPage,
 		},
 		{
-			path: '/Register',
+			path: '/register',
 			name: 'Register',
 			component: Register
 		},
 		{
-			path: '/Main',
-			name: 'Main',
+			path: '/main',
+			name: 'main',
 			component: MainPage
+        },
+        {
+			path: '/hov',
+			name: 'Error',
+			component: HovPage
 		}
 	]
 })
