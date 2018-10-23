@@ -1,40 +1,18 @@
 <template>
     <div class="main">    
-        <b-card overlay
-            v-if="main && info" 
-            :title="main.name + ' - ' + info.character.realm" 
-            :sub-title="info.character.guild.name" 
-            border-variant="dark"
-            text-variant="white"
-            header="" 
-            class="bg-light"
-            :img-src="'https://render-eu.worldofwarcraft.com/character/'+info.character.thumbnail"
-            v-bind:style="{ backgroundImage: 'https://render-eu.worldofwarcraft.com/character/'+info.character.thumbnail}">
-            <p class="card-text">
-                Gear:
-                <b-container>
-                    <b-row>
-                        <b-col v-for="(item, slot, i) in info.character.items" v-if="item.icon" :key="item.id">
-                            <!-- <p>{{item.name}}</p>
-                            <p>{{item.itemLevel}}</p> -->
-                            <GearIcon :item="item"></GearIcon>
-                        </b-col>
-                    </b-row>
-                </b-container>
-            </p>
-            
-        </b-card>
+        <ArmoryCard v-if="info.character" :character="info.character"></ArmoryCard>
   </div>
 </template>
 
 <script>
 import GearIcon from './GearIcon'
+import ArmoryCard from './ArmoryCard'
 import { APIService } from "../services/api.js";
 const apiService = new APIService();
 
 export default {
   components: {
-      GearIcon
+      GearIcon, ArmoryCard
   },
 
   data() {
