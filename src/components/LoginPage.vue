@@ -5,7 +5,7 @@
     <img src=../assets/wowlogo.png>
     <h1>{{ msg }}</h1>
     <h2>{{ middleMessage }}</h2>
-    <form :action="`${process.env.API_URL}/bnet/auth`">
+    <form :action="api_url+'/bnet/auth'">
         <input type="hidden" name="region" value="eu"/>
         <button type="submit" class="btn btn-primary"> {{buttonMessage}} </button>
     </form>
@@ -21,7 +21,8 @@ export default {
       middleMessage: "Please login with your battle.net account",
       buttonMessage: "Login with Battle.net",
       buttontest: "To Register [TESTING]",
-      title: "Wowhub"
+      title: "Wowhub",
+      api_url: process.env.API_URL
     };
   },
   mounted() {
