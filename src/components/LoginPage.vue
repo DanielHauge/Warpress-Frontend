@@ -5,7 +5,7 @@
     <img src=../assets/wowlogo.png>
     <h1>{{ msg }}</h1>
     <h2>{{ middleMessage }}</h2>
-    <form action="https://localhost/bnet/auth">
+    <form :action="`${process.env.API_URL}/bnet/auth`">
         <input type="hidden" name="region" value="eu"/>
         <button type="submit" class="btn btn-primary"> {{buttonMessage}} </button>
     </form>

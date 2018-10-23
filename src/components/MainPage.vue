@@ -9,7 +9,6 @@
             header="" 
             class="bg-light"
             :img-src="'https://render-eu.worldofwarcraft.com/character/'+info.character.thumbnail"
-            v-bind:style="{ backgroundImage: 'https://render-eu.worldofwarcraft.com/character/'+info.character.thumbnail}">
             <p class="card-text">
                 Gear:
                 <b-container>
