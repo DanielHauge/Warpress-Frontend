@@ -1,0 +1,9 @@
+*.git*
+*.idea*
+*.gitignore*
+*LICENSE*
+*.md*
+*Dockerfile*
+*.dockerignore*
+Server/*
+node_modules/*
