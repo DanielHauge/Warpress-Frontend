@@ -1,39 +1,25 @@
 <template>
     <div class="main">    
-        <b-card overlay
-            v-if="main && info" 
-            :title="main.name + ' - ' + info.character.realm" 
-            :sub-title="info.character.guild.name" 
-            border-variant="dark"
-            text-variant="white"
-            header="" 
-            class="bg-light"
-            :img-src="'https://render-eu.worldofwarcraft.com/character/'+info.character.thumbnail"
-            <p class="card-text">
-                Gear:
-                <b-container>
-                    <b-row>
-                        <b-col v-for="(item, slot, i) in info.character.items" v-if="item.icon" :key="item.id">
-                            <!-- <p>{{item.name}}</p>
-                            <p>{{item.itemLevel}}</p> -->
-                            <GearIcon :item="item"></GearIcon>
-                        </b-col>
-                    </b-row>
-                </b-container>
-            </p>
+        
+        <b-row v-if="info">
+            <b-col col sm><ArmoryCard :character="info.character"></ArmoryCard></b-col>
+            <b-col cols="10" md="auto"></b-col>
+            <b-col col sm><WarcraftlogsCard :logs="info.warcraft_logs"></WarcraftlogsCard></b-col>
             
-        </b-card>
+        </b-row>
   </div>
 </template>
 
 <script>
 import GearIcon from './GearIcon'
+import ArmoryCard from './ArmoryCard'
+import WarcraftlogsCard from './WarcraftlogsCard'
 import { APIService } from "../services/api.js";
 const apiService = new APIService();
 
 export default {
   components: {
-      GearIcon
+      GearIcon, ArmoryCard, WarcraftlogsCard
   },
 
   data() {
@@ -43,13 +29,6 @@ export default {
       main: null,
       info: null
     };
-  },
-  computed: {
-      cssProps() {
-          return {
-              '--bg-image': (this.info.character.thumbnail)
-          }
-      }
   },
   created() {
     // axios.all([getMain(), getChars()])

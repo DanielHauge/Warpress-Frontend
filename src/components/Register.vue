@@ -3,8 +3,12 @@
     <h1>Choose a Main!</h1>
     <p>You can repick at a later time.</p>
     <div>
-      <div class="list-group MainSelecter">
-        <a class="main list-group-item list-group-item-action list-group-item-primary" v-bind:class="{ 'active' : isSelected(index) }" v-on:click="selected = index" v-for="(char, index) in chars" :key="index" >
+      <div class="list-group MainSelecter" v-if="chars">
+        <a class="main list-group-item list-group-item-action list-group-item-primary" 
+            v-bind:class="{ 'active' : isSelected(index) }" 
+            v-on:click="selected = index" 
+            v-for="(char, index) in chars" 
+            :key="index" >
             {{char.name}} - {{char.realm}}
         </a>
       </div>
@@ -26,7 +30,7 @@ export default {
     return {
       description: "Hello:",
       selected: 0,
-      chars: [],
+      chars: null,
       charsData: function() {
         return "rigtige data fra bodien";
       }
@@ -37,13 +41,15 @@ export default {
     // axios.get(process.env.API_URL + 'chars', { withCredentials: true })
     this.getChars()
   },
+  watch: {
+      '$route':'getChars'
+  },
   methods: {
     getChars: function() {
       apiService
         .getChars()
         .then(response => {
-          console.log(response.data);
-          this.chars = response.data;
+          this.chars = response.data.chars;
         })
         .catch(error => console.log(error));
     },
@@ -62,7 +68,7 @@ export default {
         })
         .catch(error => console.log(error));
     },
-    
+
     isSelected: function(i) {
       return i === this.selected;
     }

@@ -3,3 +3,7 @@ body {
 	background-repeat: no-repeat;
 	background-position: center -5%;
 }
+
+.wowhead-tooltip-powered {
+    display: none !important;
+}

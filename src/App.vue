@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <MainMenu></MainMenu>
-    <b-container id="main">
-        <router-view :key="$route.fullPath"/>
-    </b-container>
+    <router-view class="main" :key="$route.fullPath"/>
   </div>
 </template>
 
@@ -33,8 +31,10 @@ export default {
   width: 100%;
   height: 100%;
 }
-#main {
-    margin-top: 5%
+.main {
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 h1{
   font-weight: bolder;
