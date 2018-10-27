@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <OldMainMenu></OldMainMenu>
+    <UnderConstruction v-if="production === 'production'"></UnderConstruction>
     <router-view class="main" :key="$route.fullPath"/>
   </div>
 </template>
@@ -8,15 +9,17 @@
 <script>
 import MainMenu from "./components/MainMenu.vue";
 import OldMainMenu from "./components/OldMainMenu.vue";
+import UnderConstruction from "./components/UnderConstruction.vue";
 
 export default {
   name: 'App',
   components: {
-    MainMenu, OldMainMenu
+    MainMenu, OldMainMenu, UnderConstruction
   },
   data () {
     return {
-      title: 'Warpress'
+      title: 'Warpress',
+      production: process.env.NODE_ENV
     }
   }
 }
