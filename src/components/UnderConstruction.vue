@@ -1,5 +1,14 @@
 <template>
-  <h1>Hov! Something went horribly wrong</h1>
+  <b-alert show variant="success">
+    <h4 class="alert-heading">WoWhub.io is under construction!</h4>
+    <p>
+        yup... 
+    </p>
+    <hr>
+    <p class="mb-0">
+        the game
+    </p>
+</b-alert>
 </template>
 
 <script>
