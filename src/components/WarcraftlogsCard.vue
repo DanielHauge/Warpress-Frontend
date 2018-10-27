@@ -6,7 +6,7 @@
             <template slot="tabs">
                 <b-tab v-for="(spec, index) in specializations" 
                     :title="spec" active 
-                    :v-on:click="selectedSpec == index"
+                    :v-on:click="selectedSpec = index"
                     title-link-class="warcraftlogs-difficulty-tab" 
                     :key="spec">
                 </b-tab>
