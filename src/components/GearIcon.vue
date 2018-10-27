@@ -19,28 +19,32 @@ export default {
   },
   created() {
     // Azerite Traits
-    if (this.item.azeriteEmpoweredItem.azeritePowers.length > 0) {
-      let azeritePowers = "&azerite-powers=" + this.classID;
+    if (this.item.azeritePowers) {
+        let azeritePowers = "&azerite-powers=" + this.classID;
 
-      for (const index in this.item.azeriteEmpoweredItem.azeritePowers) {
-        const amount = this.item.azeriteEmpoweredItem.azeritePowers.length - 1;
-        const power = this.item.azeriteEmpoweredItem.azeritePowers[
-          amount - index
-        ];
-        azeritePowers += ":" + power.id;
-      }
-      this.wowheadString += azeritePowers;
+        for (const index in this.item.azeritePowers) {
+            const amount = this.item.azeritePowers.length - 1;
+            const power = this.item.azeritePowers[
+            amount - index
+            ];
+            azeritePowers += ":" + power.id;
+        }
+        this.wowheadString += azeritePowers;
     }
     // Bonuses
     if (this.item.bonusLists) {
-      let bonuses = "&bonus=" + this.item.bonusLists.join(":");
-      this.wowheadString += bonuses;
+        let bonuses = "&bonus=" + this.item.bonusLists.join(":");
+        this.wowheadString += bonuses;
     }
     // Gems
-    if (this.item) {
+    if (this.item.gem_0) {
+        let gem = "&gems=" + this.item.gem_0
+        this.wowheadString += gem;
     }
     // Enchants
-    if (this.item) {
+    if (this.item.enchant) {
+        let enchants = "&ench=" + this.item.enchant
+        this.wowheadString += enchants;
     }
   }
 };

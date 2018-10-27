@@ -30,6 +30,11 @@ export default new Router({
 			component: MainPage
         },
         {
+			path: '/guild',
+			name: 'guild',
+			component: MainPage
+        },
+        {
 			path: '/hov',
 			name: 'Error',
 			component: HovPage

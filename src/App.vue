@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <MainMenu></MainMenu>
+    <OldMainMenu></OldMainMenu>
     <router-view class="main" :key="$route.fullPath"/>
   </div>
 </template>
 
 <script>
 import MainMenu from "./components/MainMenu.vue";
+import OldMainMenu from "./components/OldMainMenu.vue";
 
 export default {
   name: 'App',
   components: {
-    MainMenu
+    MainMenu, OldMainMenu
   },
   data () {
     return {

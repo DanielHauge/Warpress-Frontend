@@ -1,88 +1,88 @@
 <template>
     <b-card overlay
-            v-if="character" 
-            :title="character.name + ' - ' + character.realm" 
-            :sub-title="character.guild.name" 
-            border-variant="dark"
-            text-variant="white"
-            header="" 
-            class="bg-light"
-            :img-src="'https://render-eu.worldofwarcraft.com/character/'+character.thumbnail">
-            <p class="card-text">
-                <b-container>
-                    <b-row>
-                        <b-col class="left">
-                            <GearIcon :item="character.items.head" :classID="character.class"></GearIcon>
-                        </b-col>
-                        <b-col class="right">
-                            <GearIcon :item="character.items.hands" :classID="character.class"></GearIcon>
-                        </b-col>
-                    </b-row>
-                    <b-row>
-                        <b-col class="left">
-                            <GearIcon :item="character.items.neck" :classID="character.class"></GearIcon>
-                        </b-col>
-                        <b-col class="right">
-                            <GearIcon :item="character.items.waist" :classID="character.class"></GearIcon>
-                        </b-col>
-                    </b-row>
-                    <b-row>
-                        <b-col class="left">
-                            <GearIcon :item="character.items.shoulder" :classID="character.class"></GearIcon>
-                        </b-col>
-                        <b-col class="right">
-                            <GearIcon :item="character.items.legs" :classID="character.class"></GearIcon>
-                        </b-col>
-                    </b-row>
-                    <b-row>
-                        <b-col class="left">
-                            <GearIcon :item="character.items.back" :classID="character.class"></GearIcon>
-                        </b-col>
-                        <b-col class="right">
-                            <GearIcon :item="character.items.feet" :classID="character.class"></GearIcon>
-                        </b-col>
-                    </b-row>
-                    <b-row>
-                        <b-col class="left">
-                            <GearIcon :item="character.items.chest" :classID="character.class"></GearIcon>
-                        </b-col>
-                        <b-col class="right">
-                            <GearIcon :item="character.items.finger1" :classID="character.class"></GearIcon>
-                        </b-col>
-                    </b-row>
-                    <b-row>
-                        <b-col class="left">
-                            <!-- <GearIcon :item="character.items.back" :classID="character.class"></GearIcon> -->
-                        </b-col>
-                        <b-col class="right">
-                            <GearIcon :item="character.items.finger2" :classID="character.class"></GearIcon>
-                        </b-col>
-                    </b-row>
-                    <b-row>
-                        <b-col class="left">
-                            <!-- <GearIcon :item="character.items.back" :classID="character.class"></GearIcon> -->
-                        </b-col>
-                        <b-col class="right">
-                            <GearIcon :item="character.items.trinket1" :classID="character.class"></GearIcon>
-                        </b-col>
-                    </b-row>
-                    <b-row>
-                        <b-col class="left">
-                            <GearIcon :item="character.items.wrist" :classID="character.class"></GearIcon>
-                        </b-col>
-                        <b-col>
-                            <GearIcon :item="character.items.mainHand" :classID="character.class"></GearIcon>
-                        </b-col>
-                        <b-col>
-                            <GearIcon :item="character.items.offHand" :classID="character.class"></GearIcon>
-                        </b-col>
-                        <b-col class="right">
-                            <GearIcon :item="character.items.trinket2" :classID="character.class"></GearIcon>
-                        </b-col>
-                    </b-row>
-                </b-container>
-            </p>
-        </b-card>
+        v-if="character" 
+        :title="character.name + ' - ' + character.realm" 
+        :sub-title="guild.name" 
+        border-variant="dark"
+        text-variant="white"
+        header="" 
+        class="bg-light"
+        :img-src="'https://render-eu.worldofwarcraft.com/character/'+character.main">
+        <p class="card-text">
+            <b-container>
+                <b-row>
+                    <b-col class="left">
+                        <GearIcon :item="character.items.head" :classID="character.class"></GearIcon>
+                    </b-col>
+                    <b-col class="right">
+                        <GearIcon :item="character.items.hands" :classID="character.class"></GearIcon>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col class="left">
+                        <GearIcon :item="character.items.neck" :classID="character.class"></GearIcon>
+                    </b-col>
+                    <b-col class="right">
+                        <GearIcon :item="character.items.waist" :classID="character.class"></GearIcon>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col class="left">
+                        <GearIcon :item="character.items.shoulder" :classID="character.class"></GearIcon>
+                    </b-col>
+                    <b-col class="right">
+                        <GearIcon :item="character.items.legs" :classID="character.class"></GearIcon>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col class="left">
+                        <GearIcon :item="character.items.back" :classID="character.class"></GearIcon>
+                    </b-col>
+                    <b-col class="right">
+                        <GearIcon :item="character.items.feet" :classID="character.class"></GearIcon>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col class="left">
+                        <GearIcon :item="character.items.chest" :classID="character.class"></GearIcon>
+                    </b-col>
+                    <b-col class="right">
+                        <GearIcon :item="character.items.finger1" :classID="character.class"></GearIcon>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col class="left">
+                        <!-- <GearIcon :item="character.items.back" :classID="character.class"></GearIcon> -->
+                    </b-col>
+                    <b-col class="right">
+                        <GearIcon :item="character.items.finger2" :classID="character.class"></GearIcon>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col class="left">
+                        <!-- <GearIcon :item="character.items.back" :classID="character.class"></GearIcon> -->
+                    </b-col>
+                    <b-col class="right">
+                        <GearIcon :item="character.items.trinket1" :classID="character.class"></GearIcon>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col class="left">
+                        <GearIcon :item="character.items.wrist" :classID="character.class"></GearIcon>
+                    </b-col>
+                    <b-col>
+                        <GearIcon :item="character.items.mainHand" :classID="character.class"></GearIcon>
+                    </b-col>
+                    <b-col>
+                        <GearIcon :item="character.items.offHand" :classID="character.class"></GearIcon>
+                    </b-col>
+                    <b-col class="right">
+                        <GearIcon :item="character.items.trinket2" :classID="character.class"></GearIcon>
+                    </b-col>
+                </b-row>
+            </b-container>
+        </p>
+    </b-card>
 </template>
 
 <script>
@@ -93,7 +93,7 @@ export default {
   components: {
       GearIcon
   },
-  props: ['character'],
+  props: ['character', 'guild'],
   data() {
     return {
       

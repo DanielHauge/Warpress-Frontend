@@ -1,20 +1,40 @@
 <template>
-    <b-card
+    <b-card no-body
             v-if="logs" 
-            title="" 
-            sub-title="" 
-            border-variant="dark"
-            bg-variant="dark"
-            header-text-variant="white"
-            header="Warcraft Logs">
-        <b-list-group flush>
-            <b-list-group-item v-for="(log, index) in logs" variant="dark" :key="index">
-                {{log.encounterName + ' - ' + difficulty[log.difficulty]}}
-                <b-badge v-bind:class="rankColor(log.percentile)" variant="primary" pill>
-                    {{log.percentile}}
-                </b-badge>
-            </b-list-group-item>
-        </b-list-group>
+            bg-variant="dark">
+        <b-tabs card>
+            <b-tab title="Normal" active v-if="normalLogs.length > 0" title-link-class="warcraftlogs-difficulty-tab">
+                <b-list-group flush>
+                    <b-list-group-item v-for="(log, index) in normalLogs" variant="dark" :key="index">
+                        {{log.encounterName}} DPS: {{log.total}}
+                        <b-badge v-bind:class="rankColor(log.percentile)" variant="primary" pill>
+                            {{log.percentile}}
+                        </b-badge>
+                    </b-list-group-item>
+                </b-list-group>
+            </b-tab>
+            <b-tab title="Heroic" v-if="heroicLogs.length > 0" title-link-class="warcraftlogs-difficulty-tab">
+                <b-list-group flush>
+                    <b-list-group-item v-for="(log, index) in heroicLogs" variant="dark" :key="index">
+                        {{log.encounterName}} DPS: {{log.total}}
+                        <b-badge v-bind:class="rankColor(log.percentile)" variant="primary" pill>
+                            {{log.percentile}}
+                        </b-badge>
+                    </b-list-group-item>
+                </b-list-group>
+            </b-tab>
+            <b-tab title="Mythic" v-if="mythicLogs.length > 0" title-link-class="warcraftlogs-difficulty-tab">
+                <b-list-group flush>
+                    <b-list-group-item v-for="(log, index) in mythicLogs" variant="dark" :key="index">
+                        {{log.encounterName}} DPS: {{log.total}}
+                        <b-badge v-bind:class="rankColor(log.percentile)" variant="primary" pill>
+                            {{log.percentile}}
+                        </b-badge>
+                    </b-list-group-item>
+                </b-list-group>
+            </b-tab>
+        </b-tabs>
+        
     </b-card>
 </template>
 
@@ -26,6 +46,23 @@ export default {
       
   },
   props: ['logs'],
+  computed: {
+      normalLogs: function () {
+          return this.logs.filter(function(log) {
+              return log.difficulty === 3
+          })
+      },
+      heroicLogs: function () {
+          return this.logs.filter(function(log) {
+              return log.difficulty === 4
+          })
+      },
+      mythicLogs: function () {
+          return this.logs.filter(function(log) {
+              return log.difficulty === 5
+          })
+      }
+  },
   data() {
     return {
       difficulty: ["", "", "", "Normal", "Heroic", "Mythic"],
@@ -42,7 +79,10 @@ export default {
 </script>
 
 <style scoped>
-
+.badge {
+    position: relative;
+    float: right;
+}
 .legendary { background-color: rgb(255, 128, 0) !important }
 .epic { background-color: rgb(163, 53, 238) !important }
 .rare { background-color: rgb(0, 112, 255) !important }
