@@ -2,7 +2,17 @@
     <b-card no-body
             v-if="logs" 
             bg-variant="dark">
-        <b-tabs card>
+        <b-tabs pills card>
+            <template slot="tabs">
+                <b-tab v-for="(spec, index) in specializations" 
+                    :title="spec" active 
+                    :v-on:active="selectedSpec == index"
+                    title-link-class="warcraftlogs-difficulty-tab" 
+                    :key="spec">
+                </b-tab>
+            </template>
+        </b-tabs>
+        <b-tabs card pills>
             <b-tab title="Normal" active v-if="normalLogs.length > 0" title-link-class="warcraftlogs-difficulty-tab">
                 <b-list-group flush>
                     <b-list-group-item v-for="(log, index) in normalLogs" variant="dark" :key="index">
@@ -48,33 +58,46 @@ export default {
   props: ['logs'],
   computed: {
       normalLogs: function () {
+          let specializations = this.specializations
+          let selectedSpec = this.selectedSpec
           return this.logs.filter(function(log) {
-              return log.difficulty === 3
+              return log.difficulty === 3 && log.spec === specializations[selectedSpec]
           })
       },
       heroicLogs: function () {
+          let specializations = this.specializations
+          let selectedSpec = this.selectedSpec
           return this.logs.filter(function(log) {
-              return log.difficulty === 4
+              return log.difficulty === 4 && log.spec === specializations[selectedSpec]
           })
       },
       mythicLogs: function () {
+          let specializations = this.specializations
+          let selectedSpec = this.selectedSpec
           return this.logs.filter(function(log) {
-              return log.difficulty === 5
+              return log.difficulty === 5 && log.spec === specializations[selectedSpec]
+          })
+      },
+      specializations: function () {
+          let specs = this.logs.map(log => log.spec)
+          return specs.filter(function(spec, index, array) {
+              return array.indexOf(spec) === index
           })
       }
   },
   data() {
     return {
-      difficulty: ["", "", "", "Normal", "Heroic", "Mythic"],
-      rankColor: function (percentile) {
-          if(percentile >= 95) return "legendary"
-          if(percentile >= 75) return "epic"
-          if(percentile >= 50) return "rare"
-          if(percentile >= 25) return "uncommon"
-          else return "common"
-      }
+        selectedSpec: 0,
+        difficulty: ["", "", "", "Normal", "Heroic", "Mythic"],
+        rankColor: function (percentile) {
+            if(percentile >= 95) return "legendary"
+            if(percentile >= 75) return "epic"
+            if(percentile >= 50) return "rare"
+            if(percentile >= 25) return "uncommon"
+            else return "common"
+        }
     };
-  }
+  },
 };
 </script>
 
