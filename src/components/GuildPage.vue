@@ -1,33 +1,32 @@
 <template>
-    <div class="main">
+    <div class="main" v-if="guild.name">
         <br>
-        <h1 class="goldentext">{{character.name}} - {{character.realm}}</h1>
+        <h1 class="goldentext">{{guild.name}} - {{guild.realm}}</h1>
         <b-row >
             <b-col col sm class="left">
-                <WarcraftlogsCard :logs="best_parses" v-if="best_parses.length > 0"></WarcraftlogsCard>
+                <RosterCard :roster="guild.roster"></RosterCard>
             </b-col>
-            <b-col col sm class="right"><ArmoryCard :character="character" :guild="guild" v-if="character.name"></ArmoryCard></b-col>
+            <b-col col sm class="right">
+
+            </b-col>
         </b-row>
   </div>
 </template>
 
 <script>
 import GearIcon from "./GearIcon";
-import ArmoryCard from "./ArmoryCard";
+import RosterCard from "./RosterCard";
 import WarcraftlogsCard from "./WarcraftlogsCard";
 import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   components: {
     GearIcon,
-    ArmoryCard,
-    WarcraftlogsCard
+    RosterCard,
   },
 
   data() {
     return {
-      main: null,
-      info: null
     };
   },
   computed: {
@@ -39,7 +38,7 @@ export default {
     })
   },
   created() {
-    this.getPersonal();
+    this.getGuild();
   },
   methods: {
     ...mapMutations('profile', [
@@ -47,17 +46,13 @@ export default {
     ]),
 
     ...mapActions('profile', [
-        "getPersonal"    
+        "getPersonal",
+        "getGuild"
     ]),
-
   }
 };
 </script>
 
 <style scoped>
-/* .card-body {
-    background-image: "https://render-eu.worldofwarcraft.com/character/" + var(--bg-image)
-} */
-
 
 </style>

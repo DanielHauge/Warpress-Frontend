@@ -20,3 +20,7 @@ body {
     color: rgba(255, 255, 255, 1) !important;
     background-color: #495057 !important;
 }
+
+.goldentext {
+    color: #ffd700;
+  }

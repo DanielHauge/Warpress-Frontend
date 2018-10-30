@@ -19,42 +19,23 @@ const getters = {
 }
 
 const actions = {
-    getPersonal ({ commit }){
-        apiService.getPersonal()
+    getInspect ({ commit }, char){
+        apiService.getInspect(char.region, char.realm, char.name)
         	.then(response => {
         		let char = response.data.character;
                 //let guild = response.data.guild;
                 let best_parses = response.data.best_parses;
+                // char.specializations = best_parses.map(log => log.spec).filter(function(spec, index, array) {
+                //     return array.indexOf(spec) === index
+                // })
         		commit('updateCharacter', char)
         		commit('updateLogs', best_parses)
-        		//commit('updateGuild', guild)
+                //commit('updateGuild', guild)
+                
         	})
         	.catch(error => {
-        		
-                router.push("login");
-        	});
-    },
-
-    getGuild ({ commit }){
-        apiService.getGuild()
-            .then(response => {
-                let guild = response.data;
-                commit('updateGuild', guild)
-            })
-            .catch(error => {
-        		
-                router.push("registerguild");
-        	});
-    },
-
-    registerGuild ({ commit }, data){
-        apiService.registerGuild(data)
-            .then(response => {
-                router.push("guild")
-            })
-            .catch(error => {
-                console.log(error)
-                //router.push("registerguild");
+        		console.log(error)
+                //router.push("login");
         	});
     }
 }

@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <OldMainMenu></OldMainMenu>
-    <UnderConstruction v-if="production === 'production'"></UnderConstruction>
-    <router-view class="main" :key="$route.fullPath"/>
+    <!-- <OldMainMenu></OldMainMenu> -->
+    <MainMenu></MainMenu>
+    <UnderConstruction v-if="production"></UnderConstruction>
+    <!-- <router-view class="main" :key="$route.fullPath"/> -->
   </div>
 </template>
 
@@ -19,7 +20,7 @@ export default {
   data () {
     return {
       title: 'Warpress',
-      production: process.env.NODE_ENV
+      production: process.env.NODE_ENV === "production"
     }
   }
 }
@@ -36,7 +37,6 @@ export default {
   height: 100%;
 }
 .main {
-    margin-top: 5%;
     margin-left: 5%;
     margin-right: 5%;
 }

@@ -9,7 +9,7 @@
 
     <b-navbar-nav>
       <b-nav-item href="#/">Personal</b-nav-item>
-      <b-nav-item href="#/guild">Guild</b-nav-item>
+      <b-nav-item v-if="guild.name" href="#/guild">Guild</b-nav-item>
       <b-nav-item href="#/register">Register Main</b-nav-item>
     </b-navbar-nav>
 
@@ -50,7 +50,8 @@ export default {
   computed: {
       ...mapState('profile', {
           region: state => state.region,
-          character: state => state.character
+          character: state => state.character,
+          guild: state => state.guild
       })
   },
   methods: {

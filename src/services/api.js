@@ -28,6 +28,27 @@ export class APIService {
 			withCredentials: true
 		})
     }
+
+    getInspect(region, realm, characterName) {
+        const url = `${process.env.API_URL}/personal/inspect/${region}/${realm}/${characterName}`
+        return axios.get(url, {
+            withCredentials: true
+        })
+    }
+
+    getGuild() {
+		const url = `${process.env.API_URL}/guild`
+		return axios.get(url, {
+			withCredentials: true
+		})
+    }
+
+    registerGuild(data) {
+        const url = `${process.env.API_URL}/guild`
+		return axios.post(url, data, {
+			withCredentials: true
+		})
+    }
     
     logout() {
 		const url = `https://www.blizzard.com/logout`

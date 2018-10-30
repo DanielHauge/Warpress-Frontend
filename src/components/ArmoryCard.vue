@@ -1,8 +1,6 @@
 <template>
     <b-card overlay
         v-if="character" 
-        :title="character.name + ' - ' + character.realm" 
-        :sub-title="guild.name" 
         border-variant="dark"
         text-variant="white"
         header="" 
@@ -93,7 +91,7 @@ export default {
   components: {
       GearIcon
   },
-  props: ['character', 'guild'],
+  props: ['character'],
   data() {
     return {
       
@@ -109,9 +107,10 @@ export default {
 }
 
 .card {
-    max-width: 500px;
-    min-width: 350px;
-    margin: auto;
+    max-width: 400px;
+    min-width: 300px;
+    float: right;
+    margin: 2% 2% 2% 2%;
 }
 
 .col {
@@ -121,7 +120,7 @@ export default {
 
 .card-img {
     width: 100%;
-    height: 625px;
+    height: 550px;
     object-fit: cover;
 }
 

@@ -1,5 +1,5 @@
 <template>
-    <a :data-wowhead="wowheadString">
+    <a v-if="item.id !== 0" :data-wowhead="wowheadString">
         <b-img rounded :class="'gearicon' + ' rarity'+item.quality"
             
             :src="'https://wow.zamimg.com/images/wow/icons/large/'+item.icon+'.jpg'" 

@@ -49,7 +49,7 @@ export default {
       apiService
         .getChars()
         .then(response => {
-          this.chars = response.data.chars;
+          this.chars = response.data.Obj.chars;
         })
         .catch(error => console.log(error));
     },
