@@ -1,12 +1,12 @@
 <template>
    
-  <div class="hello">
-    <h1>{{title}}</h1>
-    <img src=../assets/wowlogo.png>
-    <h1>{{ msg }}</h1>
-    <h2>{{ middleMessage }}</h2>
-    <button v-on:click="login" class="btn btn-primary"> {{buttonMessage}} </button>
-  </div>
+    <div class="hello">
+        <br>
+        <img src=../assets/wowlogo.png>
+        <h1>Welcome to wowhub.io!</h1>
+        <h2>Please login with your battle.net account</h2>
+        <button v-on:click="login" class="btn btn-primary">Login with Battle.net</button>
+    </div>
 </template>
 
 <script>
@@ -16,12 +16,7 @@ export default {
     name: "Login",
     data() {
         return {
-        msg: "Welcome to WoWhub.io!",
-        middleMessage: "Please login with your battle.net account",
-        buttonMessage: "Login with Battle.net",
-        buttontest: "To Register [TESTING]",
-        title: "Wowhub",
-        api_url: process.env.API_URL
+        
         };
     },
     methods: {

@@ -66,13 +66,13 @@ export default {
     box-shadow: 0 0 10px #666;
     border-radius: 10px;
 }
-.list-group-item {
-    /* background-color: #495057  */
+/* .list-group-item {
+    background-color: #495057 
     
 }
 .list-group-item:hover { 
-    /* background-color: rgb(73, 80, 87, 0.8)  */
-}
+    background-color: rgb(73, 80, 87, 0.8) 
+} */
 
 .legendary { background-color: rgb(255, 128, 0) !important }
 .epic { background-color: rgb(163, 53, 238) !important }
