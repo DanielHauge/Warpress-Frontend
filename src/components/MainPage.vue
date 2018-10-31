@@ -5,7 +5,6 @@
         <b-row >
             <b-col col sm class="left">
                 <WarcraftlogsCard :best_parses="best_parses" v-if="best_parses"></WarcraftlogsCard>
-                <p>TODO: Search Inspect Player</p>
             </b-col>
             <b-col col sm class="right">
                 <ArmoryCard :character="character" :guild="guild" v-if="character.name"></ArmoryCard>
