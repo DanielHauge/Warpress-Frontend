@@ -4,7 +4,7 @@
         <h1 class="goldentext">{{guild.name}} - {{guild.realm}}</h1>
         <b-row >
             <b-col col sm class="left">
-                <RosterCard :roster="guild.roster"></RosterCard>
+                <RosterCard :roster="orderedRoster"></RosterCard>
             </b-col>
             <b-col col sm class="right">
 
@@ -35,7 +35,11 @@ export default {
       best_parses: state => state.best_parses,
       guild: state => state.guild,
       region: state => state.region
-    })
+    }),
+    orderedRoster: function () {
+        let roster = this.guild.roster.slice()
+        return roster.sort((memberA, memberB) => { return memberA.rank - memberB.rank })
+    }
   },
   created() {
     this.getGuild();

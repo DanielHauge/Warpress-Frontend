@@ -1,73 +1,23 @@
 <template>
-    <b-card no-body
-            v-if="logs" 
-            bg-variant="dark">
-        <b-tabs pills card v-if="specializations.length > 1">
-            <template slot="tabs">
-                <b-tab v-for="(spec, index) in specializations" 
-                    :title-link-class="{specializations}"
-                    v-on:click="selectedSpec = index"
-                    title-link-class="warcraftlogs-difficulty-tab" 
-                    :key="'S'+index">
-                    <template slot="title"><span :title="spec">{{spec}}</span></template>
-                    <!-- <template><span :title="spec">{{spec}}</span></template> -->
-                </b-tab>
-                <!-- <li v-for="(spec, index) in specializations" class="nav-item warcraftlogs-difficulty-tab" v-on:click="selectedSpec = index">{{spec}}</li> -->
-            </template>
-        </b-tabs>
-        <!-- <b-tabs pills card >
-            <template slot="tabs">
-                <li v-for="(spec, index) in specializations" class="nav-item">
-                    <a class="nav-link warcraftlogs-difficulty-tab" :class="index === selectedSpec ? 'active' : '' "  v-on:click="selectedSpec = index">{{spec}}</a>
-                </li>
-            </template>
-        </b-tabs> -->
-        
-        <b-tabs card pills>
-            <b-tab title="Normal" active v-if="normalLogs.length > 0" title-link-class="warcraftlogs-difficulty-tab">
-                <b-list-group flush>
-                    <b-list-group-item v-for="(log, index) in normalLogs" variant="dark" :key="index">
-                        {{log.encounterName}} DPS: {{log.total}}
-                        <b-badge v-bind:class="rankColor(log.percentile)" variant="primary" pill>
-                            {{log.percentile}}
-                        </b-badge>
-                    </b-list-group-item>
-                </b-list-group>
-            </b-tab>
-            <b-tab title="Heroic" v-if="heroicLogs.length > 0" title-link-class="warcraftlogs-difficulty-tab">
-                <b-list-group flush>
-                    <b-list-group-item v-for="(log, index) in heroicLogs" variant="dark" :key="index">
-                        {{log.encounterName}} DPS: {{log.total}}
-                        <b-badge v-bind:class="rankColor(log.percentile)" variant="primary" pill>
-                            {{log.percentile}}
-                        </b-badge>
-                    </b-list-group-item>
-                </b-list-group>
-            </b-tab>
-            <b-tab title="Mythic" v-if="mythicLogs.logs.length > 0" title-link-class="warcraftlogs-difficulty-tab">
-                <b-tabs pills card v-if="mythicLogs.specs.length > 1">
-                    <template slot="tabs">
-                        <b-tab v-for="(spec, index) in mythicLogs.specs" 
-                            v-on:click="selectedSpec = index"
-                            title-link-class="warcraftlogs-difficulty-tab" 
-                            :key="'S'+index">
-                            <template slot="title"><span :title="spec">{{spec}}</span></template>
-                            <!-- <template><span :title="spec">{{spec}}</span></template> -->
-                        </b-tab>
-                        <!-- <li v-for="(spec, index) in specializations" class="nav-item warcraftlogs-difficulty-tab" v-on:click="selectedSpec = index">{{spec}}</li> -->
-                    </template>
-                </b-tabs>
-                <b-list-group flush>
-                    <b-list-group-item v-for="(log, index) in mythicLogs.logs" variant="dark" :key="index">
-                        {{log.encounterName}} DPS: {{log.total}}
-                        <b-badge v-bind:class="rankColor(log.percentile)" variant="primary" pill>
-                            {{log.percentile}}
-                        </b-badge>
-                    </b-list-group-item>
-                </b-list-group>
-            </b-tab>
-        </b-tabs>
-        
+    <b-card no-body v-if="best_parses.length > 1" bg-variant="dark">
+        <template slot="header">
+            <b-nav pills class="upper">
+                <b-nav-item v-for="(difficulty, index) in difficulties" :key="index" :active="selectedDifficulty === index" v-on:click="selectedDifficulty = index">{{difficulty}}</b-nav-item>
+            </b-nav>
+        </template>
+        <template slot="header">
+            <b-nav pills>
+                <b-nav-item v-for="(spec, index) in specs" :key="index" :active="selectedSpec === index" v-on:click="selectedSpec = index">{{spec}}</b-nav-item>
+            </b-nav>
+        </template>
+        <b-list-group flush>
+            <b-list-group-item v-for="(log, index) in logs" variant="dark" :key="index">
+                {{log.encounterName}} DPS: {{log.total}}
+                <b-badge :class="rankColor(log.percentile)" variant="primary" pill>
+                    {{log.percentile}}
+                </b-badge>
+            </b-list-group-item>
+        </b-list-group>        
     </b-card>
 </template>
 
@@ -78,53 +28,33 @@ export default {
     components: {
         
     },
-    props: ['logs'],
+    props: ['best_parses'],
     computed: {
-        normalLogs: function () {
-            let specializations = this.specializations
-            let selectedSpec = this.selectedSpec
-            return this.logs.filter(function(log) {
-                return log.difficulty === 3 && log.spec === specializations[selectedSpec]
-            })
+        logs: function () {
+            let logs = this.best_parses[this.selectedDifficulty].logs
+            if(logs){
+                let spec = this.specs[this.selectedSpec]
+                return logs.filter(function(log) {
+                    return log.spec === spec
+                })
+            }
+            
+            // .filter((log)=> {
+            //     return log.spec === this.specs[selectedSpec]
+            // })
         },
-        heroicLogs: function () {
-            let specializations = this.specializations
-            let selectedSpec = this.selectedSpec
-            return this.logs.filter(function(log) {
-                return log.difficulty === 4 && log.spec === specializations[selectedSpec]
-            })
+        difficulties: function () {
+            return this.best_parses.map(group => group.difficulty)
         },
-        mythicLogs: function () {
-            let specializations = this.specializations
-            let selectedSpec = this.selectedSpec
-            let logs = this.logs.filter(function(log) {
-                return log.difficulty === 5 && log.spec === specializations[selectedSpec]
-            })
-            let specs = this.logs.map(log => log.spec).filter(function(spec, index, array) {
-                return array.indexOf(spec) === index
-            })
-
-            return {logs, specs}
-        },
-        specializations: function () {
-            let logs = this.logs
-            return logs.map(log => log.spec).filter(function(spec, index, array) {
-                return array.indexOf(spec) === index
-            })
-            // return ["Reso", "Elemental", "Enhancement"]
-        },
-        // updateSpecs: function() {
-        //     var specs = this.specializations
-        //     console.log(specs)
-        //     this.$nextTick().then(
-        //         this.$forceUpdate()
-        //     )
-        // }
+        specs: function () {
+            return this.best_parses[this.selectedDifficulty].specs;
+        }
     },
     data() {
         return {
             test: "",
             selectedSpec: 0,
+            selectedDifficulty: 0,
             difficulty: ["", "", "", "Normal", "Heroic", "Mythic"],
             rankColor: function (percentile) {
                 if(percentile >= 95) return "legendary"
@@ -134,14 +64,7 @@ export default {
                 else return "common"
             }
         };
-    },
-    methods: {
-        
-    },
-    beforeUpdate() {
-        //this.selectedSpec = 0
-    },
-    
+    }    
     };
 </script>
 
@@ -163,5 +86,32 @@ export default {
 
 .card {
     margin: 2% 2% 2% 2%;
+}
+
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+.nav-link:hover {
+    color: rgba(255, 255, 255, 1) !important;
+    
+    border-color: transparent;
+}
+.nav-link.active {
+    color: rgba(255, 255, 255, 1) !important;
+    background-color: #495057 !important;
+    border-color: transparent;
+}
+
+.nav-link:first-letter {
+    text-transform:capitalize;
+}
+
+.nav-tabs {
+    border-bottom: 0;
+}
+
+.upper {
+    margin-bottom: 10px;
 }
 </style>

@@ -5,6 +5,7 @@ const apiService = new APIService();
 const state = {
     character: {},
     best_parses: {},
+    improvements: {},
     guild: {},
     region: 'EU'
 }
@@ -28,6 +29,17 @@ const actions = {
         		commit('updateCharacter', char)
         		commit('updateLogs', best_parses)
         		//commit('updateGuild', guild)
+        	})
+        	.catch(error => {
+        		
+                router.push("login");
+        	});
+    },
+    getPersonalImprovements ({ commit }){
+        apiService.getPersonalImprovements()
+        	.then(response => {
+        		let inprovements = response.data;
+        		commit('updateInprovements', inprovements)
         	})
         	.catch(error => {
         		
@@ -63,15 +75,15 @@ const mutations = {
     updateCharacter (state, character){
         state.character = character
     },
-
+    updateImprovements (state, inprovements){
+        state.inprovements = inprovements
+    },
     updateLogs (state, logs){
         state.best_parses = logs
     },
-
     updateGuild (state, guild){
         state.guild = guild
     },
-
     changeRegion (state, region){
         state.region = region
     }

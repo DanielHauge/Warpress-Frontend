@@ -1,10 +1,10 @@
 <template>
-    <div class="main">
+    <div class="main" v-if="character.name">
         <br>
         <h1 class="goldentext">{{character.name}} - {{character.realm}}</h1>
         <b-row >
             <b-col col sm class="left">
-                <WarcraftlogsCard :logs="best_parses" v-if="best_parses.length > 0"></WarcraftlogsCard>
+                <WarcraftlogsCard :best_parses="best_parses" v-if="best_parses"></WarcraftlogsCard>
             </b-col>
             <b-col col sm class="right"><ArmoryCard :character="character" v-if="character.name"></ArmoryCard></b-col>
         </b-row>

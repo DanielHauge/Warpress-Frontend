@@ -29,6 +29,13 @@ export class APIService {
 		})
     }
 
+    getPersonalImprovements() {
+		const url = `${process.env.API_URL}/personal/improvements`
+		return axios.get(url, {
+			withCredentials: true
+		})
+    }
+
     getInspect(region, realm, characterName) {
         const url = `${process.env.API_URL}/personal/inspect/${region}/${realm}/${characterName}`
         return axios.get(url, {
