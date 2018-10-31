@@ -1,39 +1,34 @@
 <template>
-    
+   
   <div class="hello">
     <h1>{{title}}</h1>
     <img src=../assets/wowlogo.png>
     <h1>{{ msg }}</h1>
     <h2>{{ middleMessage }}</h2>
-    <form :action="api_url+'/bnet/auth'">
-        <input type="hidden" name="region" value="eu"/>
-        <button type="submit" class="btn btn-primary"> {{buttonMessage}} </button>
-    </form>
+    <button v-on:click="login" class="btn btn-primary"> {{buttonMessage}} </button>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
-  name: "Login",
-  data() {
-    return {
-      msg: "Welcome to Warpress!",
-      middleMessage: "Please login with your battle.net account",
-      buttonMessage: "Login with Battle.net",
-      buttontest: "To Register [TESTING]",
-      title: "Wowhub",
-      api_url: process.env.API_URL
-    };
-  },
-  mounted() {
-    // Check if authenticated... If user is logged on redirect to main
-  },
-  methods: {
-    navigateTo: function(nav) {
-      console.log(nav);
-      this.$router.push(nav);
+    name: "Login",
+    data() {
+        return {
+        msg: "Welcome to WoWhub.io!",
+        middleMessage: "Please login with your battle.net account",
+        buttonMessage: "Login with Battle.net",
+        buttontest: "To Register [TESTING]",
+        title: "Wowhub",
+        api_url: process.env.API_URL
+        };
+    },
+    methods: {
+        ...mapActions('profile', [
+            'login'
+        ])
     }
-  }
 };
 </script>
 

@@ -41,25 +41,25 @@ import { APIService } from "../services/api.js";
 const apiService = new APIService();
 
 export default {
-  name: "MainMenu",
-  data() {
-    return {
-      title: "Warpress"
-    };
-  },
-  computed: {
-      ...mapState('profile', {
-          region: state => state.region,
-          character: state => state.character,
-          guild: state => state.guild
-      })
-  },
-  methods: {
-      ...mapMutations('profile', [
-          'changeRegion'
-      ]),
-      logout: apiService.logout
-  }
+    name: "MainMenu",
+    data() {
+        return {
+        title: "Warpress"
+        };
+    },
+    computed: {
+        ...mapState('profile', {
+            region: state => state.region,
+            character: state => state.character,
+            guild: state => state.guild
+        })
+    },
+    methods: {
+        ...mapMutations('profile', [
+            'changeRegion'
+        ]),
+        logout: apiService.logout
+    }
 
 };
 </script>

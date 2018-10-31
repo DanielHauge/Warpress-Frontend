@@ -7,7 +7,7 @@ const state = {
     best_parses: {},
     improvements: {},
     guild: {},
-    region: 'EU'
+    region: 'eu'
 }
 
 const getters = {
@@ -68,6 +68,18 @@ const actions = {
                 console.log(error)
                 //router.push("registerguild");
         	});
+    },
+
+    login ({ commit, state }){
+        apiService.login(state.region)
+    },
+
+    logout ({ commit }){
+        apiService.logout()
+        .then(response => {
+            location.reload()
+            commit('logout')
+        })
     }
 }
 
@@ -86,6 +98,13 @@ const mutations = {
     },
     changeRegion (state, region){
         state.region = region
+    },
+    logout (state){
+        state.character = {},
+        state.best_parses = {},
+        state.improvements = {},
+        state.guild = {},
+        state.region = 'eu'
     }
 }
 

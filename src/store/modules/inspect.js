@@ -3,6 +3,7 @@ import { APIService } from '../../services/api'
 const apiService = new APIService();
 
 const state = {
+    loading: true,
     character: {},
     best_parses: {},
     guild: {},
@@ -20,6 +21,7 @@ const getters = {
 
 const actions = {
     getInspect ({ commit }, char){
+        commit('startLoading')
         apiService.getInspect(char.region, char.realm, char.name)
         	.then(response => {
         		let char = response.data.character;
@@ -30,6 +32,7 @@ const actions = {
                 // })
         		commit('updateCharacter', char)
         		commit('updateLogs', best_parses)
+        		commit('finishLoading')
                 //commit('updateGuild', guild)
                 
         	})
@@ -55,6 +58,14 @@ const mutations = {
 
     changeRegion (state, region){
         state.region = region
+    },
+
+    startLoading (state){
+        state.loading = true
+    },
+
+    finishLoading (state){
+        state.loading = false
     }
 }
 

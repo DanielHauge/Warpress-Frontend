@@ -22,37 +22,37 @@
 import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
-    
-  name: "RosterCard",
-  components: {
-      
-  },
-  props: ['roster'],
-  computed: {
-    ...mapState('profile', {
-      realm: state => state.guild.slugged_realm
-    }),
-    
-  },
-  data() {
-    return {
-        classColor: function (classCode) {
-            if(classCode == 1) return "warrior"
-            if(classCode == 2) return "paladin"
-            if(classCode == 3) return "hunter"
-            if(classCode == 4) return "rogue"
-            if(classCode == 5) return "priest"
-            if(classCode == 6) return "death-knight"
-            if(classCode == 7) return "shaman"
-            if(classCode == 8) return "mage"
-            if(classCode == 9) return "warlock"
-            if(classCode == 10) return "monk"
-            if(classCode == 11) return "druid"
-            if(classCode == 12) return "demon-hunter"
-            else return "common"
-        }
-    };
-  },
+        
+    name: "RosterCard",
+    components: {
+        
+    },
+    props: ['roster'],
+    computed: {
+        ...mapState('profile', {
+        realm: state => state.guild.slugged_realm
+        }),
+        
+    },
+    data() {
+        return {
+            classColor: function (classCode) {
+                if(classCode == 1) return "warrior"
+                if(classCode == 2) return "paladin"
+                if(classCode == 3) return "hunter"
+                if(classCode == 4) return "rogue"
+                if(classCode == 5) return "priest"
+                if(classCode == 6) return "death-knight"
+                if(classCode == 7) return "shaman"
+                if(classCode == 8) return "mage"
+                if(classCode == 9) return "warlock"
+                if(classCode == 10) return "monk"
+                if(classCode == 11) return "druid"
+                if(classCode == 12) return "demon-hunter"
+                else return "common"
+            }
+        };
+    },
 };
 </script>
 

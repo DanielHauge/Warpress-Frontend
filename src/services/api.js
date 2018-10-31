@@ -56,9 +56,14 @@ export class APIService {
 			withCredentials: true
 		})
     }
+
+    login(region) {
+		const url = `${process.env.API_URL}/bnet/auth?region=${region}`
+		location.href = url
+	}
     
     logout() {
-		const url = `https://www.blizzard.com/logout`
+		const url = `${process.env.API_URL}/bnet/logout`
 		return axios.get(url, {
 			withCredentials: true
 		})

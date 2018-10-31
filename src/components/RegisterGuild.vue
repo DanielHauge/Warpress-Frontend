@@ -11,26 +11,26 @@
 import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
-  name: "RegisterGuild",
-  data() {
-    return {
-      data: { "officerrank": 4, "raiderrank": 4, "trialrank":4 },
-      
-    };
-  },
-  mounted() {
-    // Check if authenticated... If user is logged on redirect to main
-  },
-  methods: {
-    ...mapActions('profile', [
-        "registerGuild"    
-    ]),
+    name: "RegisterGuild",
+    data() {
+        return {
+        data: { "officerrank": 4, "raiderrank": 4, "trialrank":4 },
+        
+        };
+    },
+    mounted() {
+        // Check if authenticated... If user is logged on redirect to main
+    },
+    methods: {
+        ...mapActions('profile', [
+            "registerGuild"    
+        ]),
 
-    post: function() {
-        console.log("hy")
-        this.registerGuild(this.data)
+        post: function() {
+            console.log("hy")
+            this.registerGuild(this.data)
+        }
     }
-  }
 };
 </script>
 

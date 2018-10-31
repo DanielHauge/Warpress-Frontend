@@ -4,15 +4,15 @@
 
 <script>
 export default {
-  name: "Error",
-  data() {
-    return {
-      msg: "hej"
-    };
-  },
-  mounted() {
-    
-  }
+    name: "Error",
+    data() {
+        return {
+        msg: "hej"
+        };
+    },
+    mounted() {
+        
+    }
 };
 </script>
 

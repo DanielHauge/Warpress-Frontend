@@ -16,16 +16,16 @@
 
 <script>
 export default {
-  name: "Under Construction",
+    name: "Under Construction",
 
-  data() {
-    return {
-      msg: "hej"
-    };
-  },
-  mounted() {
-    
-  }
+    data() {
+        return {
+        msg: "hej"
+        };
+    },
+    mounted() {
+        
+    }
 };
 </script>
 

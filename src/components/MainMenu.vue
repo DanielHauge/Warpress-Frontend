@@ -10,7 +10,9 @@
         <img src=../assets/wowlogo.png class="menu-logo">
         <template slot="header">
             <b-nav pills class="justify-content-end">
-                <b-nav-item :to="'/inspect/'+character.slugged_realm+'/'+character.name">{{character.name}}</b-nav-item>
+                <b-nav-item v-if="character.name" :to="'/inspect/'+character.slugged_realm+'/'+character.name">{{character.name}}</b-nav-item>
+                <b-nav-item v-if="character.name" v-on:click="logout">Logout</b-nav-item>
+                <b-nav-item v-if="!character.name" v-on:click="login">Login</b-nav-item>
             </b-nav>
         </template>
         <router-view class="main" :key="$route.fullPath"/>
@@ -18,34 +20,35 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from "vuex";
-import { APIService } from "../services/api.js";
-const apiService = new APIService();
+import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "MainMenu",
-  components: {
-  },
-  data() {
-    return {
-      title: "Warpress",
-    };
-  },
-  computed: {
-      ...mapState('profile', {
-          region: state => state.region,
-          character: state => state.character
-      }),
-      ...mapGetters('profile', {
-          realmSlug: 'realmSlug'
-      })
-  },
-  methods: {
-      ...mapMutations('profile', [
-          'changeRegion'
-      ]),
-      logout: apiService.logout
-  }
+    name: "MainMenu",
+    components: {
+    },
+    data() {
+        return {
+        title: "Warpress",
+        };
+    },
+    computed: {
+        ...mapState('profile', {
+            region: state => state.region,
+            character: state => state.character
+        }),
+        ...mapGetters('profile', {
+            realmSlug: 'realmSlug'
+        })
+    },
+    methods: {
+        ...mapMutations('profile', [
+            'changeRegion'
+        ]),
+        ...mapActions('profile', [
+            'logout',
+            'login'
+        ])
+    }
 
 };
 </script>

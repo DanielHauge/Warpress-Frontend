@@ -91,7 +91,7 @@ export default {
     components: {
         GearIcon
     },
-    props: ['character'],
+    props: ['stats'],
     data() {
         return {
         
