@@ -28,12 +28,12 @@ export default {
 
   data() {
     return {
-      description: "Hello:",
-      selected: 0,
-      chars: null,
-      charsData: function() {
-        return "rigtige data fra bodien";
-      }
+        description: "Hello:",
+        selected: 0,
+        chars: null,
+        charsData: function() {
+            return "rigtige data fra bodien";
+        }
     };
   },
   created() {
@@ -49,7 +49,7 @@ export default {
       apiService
         .getChars()
         .then(response => {
-          this.chars = response.data.Obj.chars;
+            this.chars = response.data.chars;
         })
         .catch(error => console.log(error));
     },
@@ -59,12 +59,12 @@ export default {
 
       apiService
         .setMain({
-          name: selected.name,
-          realm: selected.realm
+            name: selected.name,
+            realm: selected.realm
         })
         .then(response => {
-          this.$router.push("/");
-          //window.location.reload(true)
+            this.$router.push("/");
+            //window.location.reload(true)
         })
         .catch(error => console.log(error));
     },
@@ -78,34 +78,34 @@ export default {
 
 <style scoped>
 .MainSelecter {
-  /* width: 20%; */
-  display: inline-block;
-  padding-bottom: 10px;
+    /* width: 20%; */
+    display: inline-block;
+    padding-bottom: 10px;
 }
 main {
-  font-size: xx-large;
+    font-size: xx-large;
 }
 
 listGroup {
-  margin: 50px;
+    margin: 50px;
 }
 
 .list-group-item {
-  background-color: transparent;
-  border-top: 0 solid #ddd;
-  border-radius: 5px;
-  color: #fff;
+    background-color: transparent;
+    border-top: 0 solid #ddd;
+    border-radius: 5px;
+    color: #fff;
 }
 
 .list-group-item.active,
 .list-group-item.active:hover,
 .list-group-item.active:focus {
-  background-color: darkorange;
+    background-color: darkorange;
 }
 
 .list-group-item:hover {
-  background-color: darkorange;
-  opacity: 0.6;
+    background-color: darkorange;
+    opacity: 0.6;
 }
 
 .register {

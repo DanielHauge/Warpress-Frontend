@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg-image">
     <!-- <OldMainMenu></OldMainMenu> -->
     <MainMenu></MainMenu>
     <UnderConstruction v-if="production"></UnderConstruction>

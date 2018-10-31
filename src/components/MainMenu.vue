@@ -5,6 +5,20 @@
                 <b-nav-item to="/" exact>Personal</b-nav-item>
                 <b-nav-item to="/guild" exact>Guild</b-nav-item>
                 <b-nav-item to="/register">Settings</b-nav-item>
+                <b-nav-form @submit="inspect">
+                    <b-form-select v-model="selectedSearchRealm" text="Realm " variant="outline-success">
+                        <template slot="first">
+                            <!-- this slot appears above the options from 'options' prop -->
+                            <option :value="null" disabled>Realm</option>
+                        </template>
+                        <option value="the-maelstrom">The Maelstrom</option>
+                        <option value="thunderhorn">Thunderhorn</option>
+                        <option value="twisting-nether">Twisting Nether</option>
+                    </b-form-select>
+                    <b-form-input class="mr-sm-2" type="text" v-model="searchCharName" placeholder="Character Name"></b-form-input>
+                    <b-button type="submit" variant="outline-success" class="my-2 my-sm-0">Search</b-button>
+                </b-nav-form>
+
             </b-nav>
         </template>
         <img src=../assets/wowlogo.png class="menu-logo">
@@ -21,6 +35,7 @@
 
 <script>
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
+import router from '../router'
 
 export default {
     name: "MainMenu",
@@ -29,6 +44,8 @@ export default {
     data() {
         return {
         title: "Warpress",
+        selectedSearchRealm: null,
+        searchCharName: null
         };
     },
     computed: {
@@ -47,7 +64,13 @@ export default {
         ...mapActions('profile', [
             'logout',
             'login'
-        ])
+        ]),
+        inspect: function () {
+            if(this.selectedSearchRealm && this.searchCharName){
+                router.push({ path: `/inspect/${this.selectedSearchRealm}/${this.searchCharName}` })
+            }
+            
+        }
     }
 
 };
@@ -103,6 +126,11 @@ export default {
 
 .nav-tabs {
     border-bottom: 0;
+}
+
+.left {
+    position: absolute; 
+    right: 60%; 
 }
 </style>
 
