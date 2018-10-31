@@ -1,25 +1,19 @@
-body {
+#app {
     height: 100%;
     background-image: url('https://i.pinimg.com/originals/7f/0d/16/7f0d169e2909a47a703eb4c8b097fcef.jpg');
 	background-repeat: no-repeat;
     background-position: center 0px;
     background-attachment: fixed;
+    background-size: cover;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
 }
 
 .wowhead-tooltip-powered {
     display: none !important;
-}
-
-
-.warcraftlogs-difficulty-tab {
-    color: rgba(255, 255, 255, 0.5) !important;
-}
-.warcraftlogs-difficulty-tab:hover {
-    color: rgba(255, 255, 255, 1) !important;
-}
-.warcraftlogs-difficulty-tab.active {
-    color: rgba(255, 255, 255, 1) !important;
-    background-color: #495057 !important;
 }
 
 

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-image">
+  <div id="app">
     <!-- <OldMainMenu></OldMainMenu> -->
     <MainMenu></MainMenu>
     <UnderConstruction v-if="production"></UnderConstruction>
@@ -35,6 +35,7 @@ export default {
   /* color: #ffd700; */
   width: 100%;
   height: 100%;
+  padding-top: 50px;
 }
 .main {
     margin-left: 5%;

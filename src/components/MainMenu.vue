@@ -79,7 +79,6 @@ export default {
 <style scoped>
 
 .main-menu {
-    margin-top: 50px;
     margin-bottom: 50px;
     margin-left: 5%;
     margin-right: 5%;
