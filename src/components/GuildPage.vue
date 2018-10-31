@@ -1,19 +1,27 @@
 <template>
-    <div class="main" v-if="guild.name">
-        <br>
-        <h1 class="goldentext">{{guild.name}} - {{guild.realm}}</h1>
-        <b-row >
-            <b-col col sm class="left">
-                
-            </b-col>
-            <b-col col sm class="right">
-                <RosterCard :roster="orderedRoster"></RosterCard>
-            </b-col>
-        </b-row>
-  </div>
+    <div class="main">
+        <div v-if="guild.name">
+            <br>
+            <h1 class="goldentext">{{guild.name}} - {{guild.realm}}</h1>
+            <b-row >
+                <b-col col sm class="left">
+                    
+                </b-col>
+                <b-col col sm class="right">
+                    <RosterCard :roster="orderedRoster"></RosterCard>
+                </b-col>
+            </b-row>
+        </div>
+        <div v-if="!guild.name" class="loading">
+            <pulse-loader color="#FFFFFF"></pulse-loader>
+        </div>
+    </div>
+    
 </template>
 
 <script>
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+
 import GearIcon from "./GearIcon";
 import RosterCard from "./RosterCard";
 import WarcraftlogsCard from "./WarcraftlogsCard";
@@ -23,6 +31,7 @@ export default {
     components: {
         GearIcon,
         RosterCard,
+        PulseLoader
     },
 
     data() {
@@ -58,5 +67,7 @@ export default {
 </script>
 
 <style scoped>
-
+.loading {
+    margin-top: 25%;
+}
 </style>

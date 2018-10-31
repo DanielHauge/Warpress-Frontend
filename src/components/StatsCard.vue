@@ -1,116 +1,131 @@
 <template>
-    <b-card overlay
-        v-if="character" 
+    <b-card
+        v-if="stats" 
         border-variant="dark"
         text-variant="white"
-        header="" 
-        class="bg-light"
-        :img-src="'https://render-eu.worldofwarcraft.com/character/'+character.main">
+        bg-variant="dark"
+        header="Stats">
         <p class="card-text">
-            <b-container>
-                <b-row>
-                    <b-col class="left">
-                        <GearIcon :item="character.items.head" :classID="character.class"></GearIcon>
-                    </b-col>
-                    <b-col class="right">
-                        <GearIcon :item="character.items.hands" :classID="character.class"></GearIcon>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col class="left">
-                        <GearIcon :item="character.items.neck" :classID="character.class"></GearIcon>
-                    </b-col>
-                    <b-col class="right">
-                        <GearIcon :item="character.items.waist" :classID="character.class"></GearIcon>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col class="left">
-                        <GearIcon :item="character.items.shoulder" :classID="character.class"></GearIcon>
-                    </b-col>
-                    <b-col class="right">
-                        <GearIcon :item="character.items.legs" :classID="character.class"></GearIcon>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col class="left">
-                        <GearIcon :item="character.items.back" :classID="character.class"></GearIcon>
-                    </b-col>
-                    <b-col class="right">
-                        <GearIcon :item="character.items.feet" :classID="character.class"></GearIcon>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col class="left">
-                        <GearIcon :item="character.items.chest" :classID="character.class"></GearIcon>
-                    </b-col>
-                    <b-col class="right">
-                        <GearIcon :item="character.items.finger1" :classID="character.class"></GearIcon>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col class="left">
-                        <!-- <GearIcon :item="character.items.back" :classID="character.class"></GearIcon> -->
-                    </b-col>
-                    <b-col class="right">
-                        <GearIcon :item="character.items.finger2" :classID="character.class"></GearIcon>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col class="left">
-                        <!-- <GearIcon :item="character.items.back" :classID="character.class"></GearIcon> -->
-                    </b-col>
-                    <b-col class="right">
-                        <GearIcon :item="character.items.trinket1" :classID="character.class"></GearIcon>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col class="left">
-                        <GearIcon :item="character.items.wrist" :classID="character.class"></GearIcon>
-                    </b-col>
-                    <b-col>
-                        <GearIcon :item="character.items.mainHand" :classID="character.class"></GearIcon>
-                    </b-col>
-                    <b-col>
-                        <GearIcon :item="character.items.offHand" :classID="character.class"></GearIcon>
-                    </b-col>
-                    <b-col class="right">
-                        <GearIcon :item="character.items.trinket2" :classID="character.class"></GearIcon>
-                    </b-col>
-                </b-row>
-            </b-container>
+            <p v-for="stat in stats">{{statName(stat.stat) + ': ' + stat.amount + ' -- statcode:' + stat.stat}}</p>
         </p>
     </b-card>
 </template>
 
 <script>
-import GearIcon from './GearIcon'
 
 export default {
-    name: "ArmoryCard",
+    name: "StatsCard",
     components: {
-        GearIcon
+        
     },
     props: ['stats'],
     data() {
         return {
-        
+            statName: function (stat) {
+                let stats = [
+                    "Mana", 
+                    "Health", 
+                    "2",
+                    "Agility", 
+                    "Strength", 
+                    "Intellect", 
+                    "Spirit", 
+                    "Stamina",
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "Defense Skill",
+                    "Dodge",
+                    "Parry",
+                    "Block",
+                    "Melee Hit",
+                    "Ranged Hit",
+                    "Spell Hit",
+                    "Melee Crit",
+                    "Ranged Crit",
+                    "Spell Crit",
+                    "Melee Hit Taken",
+                    "Ranged Hit Taken",
+                    "Spell Hit Taken",
+                    "Melee Crit Taken",
+                    "Ranged Crit Taken",
+                    "Spell Crit Taken",
+                    "Melee Haste",
+                    "Ranged Haste",
+                    "Spell Haste",
+                    "Hit",
+                    "Crit",
+                    "Hit Taken",
+                    "Crit Taken",
+                    "Resilience",
+                    "Haste",
+                    "Expertise",
+                    "Attack Power",
+                    "Ranged Attack Power",
+                    "Versatility",
+                    "Spell Healing Done",			// deprecated
+                    "Spell Damage Done",			// deprecated
+                    "Mana Regeneration",
+                    "Armor Penetration",
+                    "Spell Power",
+                    "Health Regen",
+                    "Spell Penetration",
+                    "Block Value",
+                    "Mastery",
+                    "Bonus Armor",
+                    "Fire Resistance",
+                    "Frost Resistance",
+                    "Holy Resistance",
+                    "Shadow Resistance",
+                    "Nature Resistance",
+                    "Arcane Resistance",
+                    "PVP Power",
+                    "Amplify",
+                    "Multistrike",
+                    "Readiness",
+                    "Speed",
+                    "Leech",
+                    "Avoidence",
+                    "Indestructible",
+                    "WOD_5",
+                    "Cleave",
+                    "67",
+                    "68",
+                    "69",
+                    "70",
+                    "Strength/Agility/Intellect",
+                    "Strength/Agility",
+                    "Agility/Intellect",
+                    "Strength/Intellect"
+                ]
+                if(stat == -1) return "Armor"
+                else return stats[stat]
+            }
         };
+    },
+    computed: {
+        // orderedTalents: function () {
+        //     let talents = this.spec.talents.slice()
+        //     return talents.sort((a, b) => { return a.tier - b.tier} )
+        // }
     }
 };
 </script>
 
 <style scoped>
 
-.gearicon {
-    margin: 4px 4px 4px 4px;
-}
 
 .card {
+    width: 100%;
     max-width: 400px;
     min-width: 300px;
     float: right;
     margin: 2% 2% 2% 2%;
+}
+
+.card-body {
+    padding: 0px;
 }
 
 .col {

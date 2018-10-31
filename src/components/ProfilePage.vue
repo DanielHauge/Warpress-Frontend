@@ -10,6 +10,7 @@
                 <b-col col sm class="right">
                     <ArmoryCard :character="character" v-if="character.name"></ArmoryCard>
                     <TalentsCard :spec="character.spec" v-if="character.spec"></TalentsCard>
+                    <StatsCard :stats="character.stats" v-if="character.stats"></StatsCard>
                 </b-col>
             </b-row>
         </div>
@@ -22,6 +23,7 @@
 <script>
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import ArmoryCard from "./ArmoryCard";
+import StatsCard from "./StatsCard";
 import TalentsCard from "./TalentsCard";
 import WarcraftlogsCard from "./WarcraftlogsCard";
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
@@ -29,6 +31,7 @@ import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 export default {
     components: {
         ArmoryCard,
+        StatsCard,
         WarcraftlogsCard,
         TalentsCard,
         PulseLoader
