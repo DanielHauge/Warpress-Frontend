@@ -14,7 +14,7 @@ export default {
     name: "RegisterGuild",
     data() {
         return {
-        data: { "officerrank": 4, "raiderrank": 4, "trialrank":4 },
+        data: { "officerrank": 1, "raiderrank": 2, "trialrank":3 },
         
         };
     },

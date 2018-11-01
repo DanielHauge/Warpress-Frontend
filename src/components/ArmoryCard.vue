@@ -12,7 +12,7 @@
                     <b-col class="left">
                         <GearIcon :item="character.items.head" :classID="character.class"></GearIcon>
                     </b-col>
-                    <p>Item Level: {{character.items.averageItemLevel}}</p>
+                    <p>Item Level: {{character.items.averItemLevelEquipped}}</p>
                     <b-col class="right">
                         <GearIcon :item="character.items.hands" :classID="character.class"></GearIcon>
                     </b-col>

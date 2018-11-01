@@ -29,7 +29,17 @@
                 <b-nav-item v-if="!character.name" v-on:click="login">Login</b-nav-item>
             </b-nav>
         </template>
-        <router-view class="main" :key="$route.fullPath"/>
+        <router-view class="view" :key="$route.fullPath"/>
+        <b-card-footer footer-text-variant="white">
+            <small>Powered by: 
+                <a href="https://www.warcraftlogs.com">Warcraft Logs</a>, 
+                <a href="https://raider.io">Raider.IO</a>, 
+                <a href="https://www.wowprogress.com">WoWProgress</a>, 
+                <a href="https://wowanalyzer.com">WoWAnalyser</a>,
+                <a href="https://www.raidbots.com">Raidbots</a> and
+                <a href="https://www.blizzard.com">Blizzard</a>
+            </small>
+        </b-card-footer>
     </b-card>
 </template>
 

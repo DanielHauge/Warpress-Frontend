@@ -11,10 +11,10 @@
             </b-nav>
         </template>
         <b-list-group flush>
-            <b-list-group-item v-for="(log, index) in logs" variant="dark" :key="index">
+            <b-list-group-item :href="log.reportID" v-for="(log, index) in logs" variant="dark" :key="index">
                 {{log.encounterName}} DPS: {{log.total}}
                 <b-badge :class="rankColor(log.percentile)" variant="primary" pill>
-                    {{log.percentile}}
+                    {{log.percentile}} 
                 </b-badge>
             </b-list-group-item>
         </b-list-group>        
@@ -36,7 +36,7 @@ export default {
                 let spec = this.specs[this.selectedSpec]
                 return logs.filter(function(log) {
                     return log.spec === spec
-                })
+                }).sort(function(a, b) { return b.percentile - a.percentile})
             }
             
             // .filter((log)=> {

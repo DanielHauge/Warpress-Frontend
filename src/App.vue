@@ -37,9 +37,10 @@ export default {
   height: 100%;
   padding-top: 50px;
 }
-.main {
-    margin-left: 5%;
-    margin-right: 5%;
+.view {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 h1{
   font-weight: bolder;

@@ -1,7 +1,7 @@
 <template>
     <b-container>
         <b-alert show variant="warning">
-            <h4 class="alert-heading">WoWhub.io is under construction!</h4>
+            <h4 class="alert-heading">wowhub.io is under construction!</h4>
             <p>
                 yup.
             </p>

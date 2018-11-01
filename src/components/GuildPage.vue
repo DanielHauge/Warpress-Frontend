@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="guild">
         <div v-if="guild.name">
             <br>
             <h1 class="goldentext">{{guild.name}} - {{guild.realm}}</h1>
@@ -28,6 +28,7 @@ import WarcraftlogsCard from "./WarcraftlogsCard";
 import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
+    name: "GuildPage",
     components: {
         GearIcon,
         RosterCard,

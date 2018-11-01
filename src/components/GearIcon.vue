@@ -5,6 +5,7 @@
             :src="'https://wow.zamimg.com/images/wow/icons/large/'+item.icon+'.jpg'" 
             alt="Image">
         </b-img>
+        <small v-if="item.azeriteItem.azeriteLevel" id="necklevel">{{item.azeriteItem.azeriteLevel}}</small>
     </a>
 </template>
 
@@ -90,5 +91,9 @@ export default {
 
 .rarity8 {
   box-shadow: 0px 0px 50px #00ccff;
+}
+
+.necklevel {
+    
 }
 </style>
