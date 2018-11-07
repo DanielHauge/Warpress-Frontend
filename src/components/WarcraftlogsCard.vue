@@ -85,23 +85,11 @@ export default {
 }
 
 .card {
-    margin: 2% 2% 2% 2%;
+    margin: 5px 5px 5px 5px;
 }
 
 
-.nav-link {
-    color: rgba(255, 255, 255, 0.5) !important;
-}
-.nav-link:hover {
-    color: rgba(255, 255, 255, 1) !important;
-    
-    border-color: transparent;
-}
-.nav-link.active {
-    color: rgba(255, 255, 255, 1) !important;
-    background-color: #495057 !important;
-    border-color: transparent;
-}
+
 
 .nav-link:first-letter {
     text-transform:capitalize;

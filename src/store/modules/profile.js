@@ -5,6 +5,7 @@ const apiService = new APIService();
 const state = {
     character: {},
     best_parses: {},
+    raider_io_profile: {},
     improvements: {},
     guild: {},
     region: 'eu'
@@ -26,8 +27,11 @@ const actions = {
         		let char = response.data.character;
                 //let guild = response.data.guild;
                 let best_parses = response.data.best_parses;
+                let raider_io_profile = response.data.raider_io_profile;
+                
         		commit('updateCharacter', char)
         		commit('updateLogs', best_parses)
+        		commit('updateMythicPlus', raider_io_profile)
         		//commit('updateGuild', guild)
         	})
         	.catch(error => {
@@ -39,7 +43,7 @@ const actions = {
         apiService.getPersonalImprovements()
         	.then(response => {
         		let inprovements = response.data;
-        		commit('updateInprovements', inprovements)
+        		commit('updateImprovements', inprovements)
         	})
         	.catch(error => {
         		
@@ -87,11 +91,14 @@ const mutations = {
     updateCharacter (state, character){
         state.character = character
     },
-    updateImprovements (state, inprovements){
-        state.inprovements = inprovements
+    updateImprovements (state, improvements){
+        state.improvements = improvements
     },
     updateLogs (state, logs){
         state.best_parses = logs
+    },
+    updateMythicPlus (state, profile){
+        state.raider_io_profile = profile
     },
     updateGuild (state, guild){
         state.guild = guild

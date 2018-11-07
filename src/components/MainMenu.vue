@@ -14,6 +14,7 @@
                         <option value="the-maelstrom">The Maelstrom</option>
                         <option value="thunderhorn">Thunderhorn</option>
                         <option value="twisting-nether">Twisting Nether</option>
+                        <option value="azjol-nerub">Azjol-Nerub</option>
                     </b-form-select>
                     <b-form-input class="mr-sm-2" type="text" v-model="searchCharName" placeholder="Character Name"></b-form-input>
                     <b-button type="submit" variant="outline-success" class="my-2 my-sm-0">Search</b-button>

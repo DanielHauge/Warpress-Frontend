@@ -6,6 +6,7 @@
             <b-row >
                 <b-col col sm class="left">
                     <WarcraftlogsCard :best_parses="best_parses" v-if="best_parses"></WarcraftlogsCard>
+                    <RaiderioCard :profile="raider_io_profile" v-if="raider_io_profile"></RaiderioCard>
                 </b-col>
                 <b-col col sm class="right">
                     <ArmoryCard :character="character" v-if="character.name"></ArmoryCard>
@@ -26,6 +27,7 @@ import ArmoryCard from "./ArmoryCard";
 import StatsCard from "./StatsCard";
 import TalentsCard from "./TalentsCard";
 import WarcraftlogsCard from "./WarcraftlogsCard";
+import RaiderioCard from "./RaiderioCard";
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
@@ -33,6 +35,7 @@ export default {
         ArmoryCard,
         StatsCard,
         WarcraftlogsCard,
+        RaiderioCard,
         TalentsCard,
         PulseLoader
     },
@@ -45,6 +48,7 @@ export default {
         ...mapState("inspect", {
             character: state => state.character,
             best_parses: state => state.best_parses,
+            raider_io_profile: state => state.raider_io_profile,
             loadingData: state => state.loading
         }),
         ...mapState("profile", {

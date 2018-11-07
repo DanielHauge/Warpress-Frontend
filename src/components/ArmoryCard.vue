@@ -111,7 +111,7 @@ export default {
     max-width: 400px;
     min-width: 300px;
     float: right;
-    margin: 2% 2% 2% 2%;
+    margin: 5px 5px 5px 5px;
 }
 
 .col {

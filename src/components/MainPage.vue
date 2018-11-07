@@ -5,6 +5,7 @@
         <b-row >
             <b-col col sm class="left">
                 <WarcraftlogsCard :best_parses="best_parses" v-if="best_parses"></WarcraftlogsCard>
+                <RaiderioCard :profile="raider_io_profile" v-if="raider_io_profile"></RaiderioCard>
             </b-col>
             <b-col col sm class="right">
                 <ArmoryCard :character="character" :guild="guild" v-if="character.name"></ArmoryCard>
@@ -21,6 +22,7 @@ import ArmoryCard from "./ArmoryCard";
 import TalentsCard from "./TalentsCard";
 import StatsCard from "./StatsCard";
 import WarcraftlogsCard from "./WarcraftlogsCard";
+import RaiderioCard from "./RaiderioCard";
 import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
@@ -29,7 +31,8 @@ export default {
         ArmoryCard,
         StatsCard,
         TalentsCard,
-        WarcraftlogsCard
+        WarcraftlogsCard,
+        RaiderioCard
     },
 
     data() {
@@ -40,14 +43,17 @@ export default {
     },
     computed: {
         ...mapState('profile', {
-        character: state => state.character,
-        best_parses: state => state.best_parses,
-        guild: state => state.guild,
-        region: state => state.region
+            character: state => state.character,
+            best_parses: state => state.best_parses,
+            raider_io_profile: state => state.raider_io_profile,
+            guild: state => state.guild,
+            region: state => state.region,
+            improvements: state => state.improvements
         })
     },
     created() {
         this.getPersonal();
+        this.getPersonalImprovements();
     },
     methods: {
         ...mapMutations('profile', [
@@ -55,7 +61,8 @@ export default {
         ]),
 
         ...mapActions('profile', [
-            "getPersonal"    
+            "getPersonal",
+            "getPersonalImprovements"
         ]),
 
     }

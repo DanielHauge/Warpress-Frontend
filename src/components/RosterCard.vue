@@ -93,18 +93,18 @@ export default {
 .warlock { background-color: #8787ED }
 .warrior { background-color: #C79C6E } */
 
-.death-knight:hover { box-shadow: inset 0px 0 50px rgb(196, 31, 59, 0.8) }
-.demon-hunter:hover { box-shadow: inset 0px 0 50px rgb(163, 48, 201, 0.8) }
-.druid:hover { box-shadow: inset 0px 0 50px rgb(255, 125, 10, 0.8) }
-.hunter:hover { box-shadow: inset 0px 0 50px rgb(171, 212, 115, 0.8) }
-.mage:hover { box-shadow: inset 0px 0 50px rgb(64, 199, 235, 0.8) }
-.monk:hover { box-shadow: inset 0px 0 50px rgb(0, 255, 150, 0.8) }
-.paladin:hover { box-shadow: inset 0px 0 50px rgb(245, 140, 186, 0.8) }
-.priest:hover { box-shadow: inset 0px 0 50px rgb(255, 255, 255, 0.8) }
-.rogue:hover { box-shadow: inset 0px 0 50px rgb(255, 245, 105, 0.8) }
-.shaman:hover { box-shadow: inset 0px 0 50px rgb(0, 112, 222, 0.8) }
-.warlock:hover { box-shadow: inset 0px 0 50px rgb(135, 135, 237, 0.8) }
-.warrior:hover { box-shadow: inset 0px 0 50px rgb(199, 156	, 110, 0.8) }
+.death-knight:hover { box-shadow: inset 0px 0 50px rgb(196, 31, 59, 1) }
+.demon-hunter:hover { box-shadow: inset 0px 0 50px rgb(163, 48, 201, 1) }
+.druid:hover { box-shadow: inset 0px 0 50px rgb(255, 125, 10, 1) }
+.hunter:hover { box-shadow: inset 0px 0 50px rgb(171, 212, 115, 1) }
+.mage:hover { box-shadow: inset 0px 0 50px rgb(64, 199, 235, 1) }
+.monk:hover { box-shadow: inset 0px 0 50px rgb(0, 255, 150, 1) }
+.paladin:hover { box-shadow: inset 0px 0 50px rgb(245, 140, 186, 1) }
+.priest:hover { box-shadow: inset 0px 0 50px rgb(255, 255, 255, 1) }
+.rogue:hover { box-shadow: inset 0px 0 50px rgb(255, 245, 105, 1) }
+.shaman:hover { box-shadow: inset 0px 0 50px rgb(0, 112, 222, 1) }
+.warlock:hover { box-shadow: inset 0px 0 50px rgb(135, 135, 237, 1) }
+.warrior:hover { box-shadow: inset 0px 0 50px rgb(199, 156, 110, 1) }
 
 .card-body {
     padding: 0px;

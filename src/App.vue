@@ -13,16 +13,16 @@ import OldMainMenu from "./components/OldMainMenu.vue";
 import UnderConstruction from "./components/UnderConstruction.vue";
 
 export default {
-  name: 'App',
-  components: {
-    MainMenu, OldMainMenu, UnderConstruction
-  },
-  data () {
-    return {
-      title: 'Warpress',
-      production: process.env.NODE_ENV === "production"
+    name: 'App',
+    components: {
+        MainMenu, OldMainMenu, UnderConstruction
+    },
+    data () {
+        return {
+        title: 'Warpress',
+        production: process.env.NODE_ENV === "production"
+        }
     }
-  }
 }
 </script>
 

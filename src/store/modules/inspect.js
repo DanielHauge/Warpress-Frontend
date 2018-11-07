@@ -6,6 +6,7 @@ const state = {
     loading: true,
     character: {},
     best_parses: {},
+    raider_io_profile: {},
     guild: {},
     region: 'EU'
 }
@@ -27,11 +28,14 @@ const actions = {
         		let char = response.data.character;
                 //let guild = response.data.guild;
                 let best_parses = response.data.best_parses;
+                let raider_io_profile = response.data.raider_io_profile;
+
                 // char.specializations = best_parses.map(log => log.spec).filter(function(spec, index, array) {
                 //     return array.indexOf(spec) === index
                 // })
         		commit('updateCharacter', char)
-        		commit('updateLogs', best_parses)
+                commit('updateLogs', best_parses)
+                commit('updateMythicPlus', raider_io_profile)
         		commit('finishLoading')
                 //commit('updateGuild', guild)
                 
@@ -50,6 +54,9 @@ const mutations = {
 
     updateLogs (state, logs){
         state.best_parses = logs
+    },
+    updateMythicPlus (state, profile){
+        state.raider_io_profile = profile
     },
 
     updateGuild (state, guild){
